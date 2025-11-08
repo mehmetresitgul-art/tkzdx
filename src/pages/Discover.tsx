@@ -97,34 +97,28 @@ const Discover = () => {
   const handleStartConversation = async (otherUserId: string) => {
     if (!user) return;
 
-    // Check if conversation already exists (both directions)
-    const { data: conv1 } = await supabase
+    // Sort user IDs to match database constraint (user1_id < user2_id)
+    const [user1_id, user2_id] = [user.id, otherUserId].sort();
+
+    // Check if conversation already exists
+    const { data: existingConversation } = await supabase
       .from("conversations")
       .select("id")
-      .eq("user1_id", user.id)
-      .eq("user2_id", otherUserId)
+      .eq("user1_id", user1_id)
+      .eq("user2_id", user2_id)
       .maybeSingle();
-
-    const { data: conv2 } = await supabase
-      .from("conversations")
-      .select("id")
-      .eq("user1_id", otherUserId)
-      .eq("user2_id", user.id)
-      .maybeSingle();
-
-    const existingConversation = conv1 || conv2;
 
     if (existingConversation) {
       navigate("/mesajlar");
       return;
     }
 
-    // Create new conversation
-    const { data: newConversation, error } = await supabase
+    // Create new conversation with sorted IDs
+    const { error } = await supabase
       .from("conversations")
       .insert({
-        user1_id: user.id,
-        user2_id: otherUserId,
+        user1_id,
+        user2_id,
       })
       .select()
       .single();
