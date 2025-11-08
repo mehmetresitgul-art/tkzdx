@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
+import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import { Menu } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/takazade-logo.png";
 
 const Navbar = () => {
   const [user, setUser] = useState<any>(null);
+  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -55,8 +58,104 @@ const Navbar = () => {
           )}
 
           <div className="flex items-center gap-4">
+            <Sheet open={isOpen} onOpenChange={setIsOpen}>
+              <SheetTrigger asChild className="md:hidden">
+                <Button variant="ghost" size="icon">
+                  <Menu className="h-6 w-6" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px]">
+                <nav className="flex flex-col gap-4 mt-8">
+                  {user ? (
+                    <>
+                      <Link 
+                        to="/kesfet" 
+                        className="text-foreground hover:text-primary transition-smooth py-2 text-lg"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Keşfet
+                      </Link>
+                      <Link 
+                        to="/profil" 
+                        className="text-foreground hover:text-primary transition-smooth py-2 text-lg"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Profilim
+                      </Link>
+                      <Link 
+                        to="/mesajlar" 
+                        className="text-foreground hover:text-primary transition-smooth py-2 text-lg"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Mesajlar
+                      </Link>
+                    </>
+                  ) : (
+                    <>
+                      <a 
+                        href="#nasil-calisir" 
+                        className="text-foreground hover:text-primary transition-smooth py-2 text-lg"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Nasıl Çalışır?
+                      </a>
+                      <a 
+                        href="#topluluk" 
+                        className="text-foreground hover:text-primary transition-smooth py-2 text-lg"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Topluluk
+                      </a>
+                      <a 
+                        href="#neden-takazade" 
+                        className="text-foreground hover:text-primary transition-smooth py-2 text-lg"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Neden Takazade?
+                      </a>
+                    </>
+                  )}
+                  <div className="flex flex-col gap-2 mt-4">
+                    {user ? (
+                      <Button 
+                        onClick={() => {
+                          setIsOpen(false);
+                          navigate("/profil");
+                        }} 
+                        className="bg-primary hover:bg-primary/90 w-full"
+                      >
+                        Hesabım
+                      </Button>
+                    ) : (
+                      <>
+                        <Button 
+                          variant="ghost" 
+                          onClick={() => {
+                            setIsOpen(false);
+                            navigate("/auth");
+                          }}
+                          className="w-full"
+                        >
+                          Giriş Yap
+                        </Button>
+                        <Button 
+                          onClick={() => {
+                            setIsOpen(false);
+                            navigate("/auth");
+                          }} 
+                          className="bg-primary hover:bg-primary/90 w-full"
+                        >
+                          Üye Ol
+                        </Button>
+                      </>
+                    )}
+                  </div>
+                </nav>
+              </SheetContent>
+            </Sheet>
+            
             {user ? (
-              <Button onClick={() => navigate("/profil")} className="bg-primary hover:bg-primary/90">
+              <Button onClick={() => navigate("/profil")} className="bg-primary hover:bg-primary/90 hidden md:inline-flex">
                 Hesabım
               </Button>
             ) : (
@@ -64,7 +163,7 @@ const Navbar = () => {
                 <Button variant="ghost" onClick={() => navigate("/auth")} className="hidden md:inline-flex">
                   Giriş Yap
                 </Button>
-                <Button onClick={() => navigate("/auth")} className="bg-primary hover:bg-primary/90">
+                <Button onClick={() => navigate("/auth")} className="bg-primary hover:bg-primary/90 hidden md:inline-flex">
                   Üye Ol
                 </Button>
               </>
