@@ -14,7 +14,7 @@ const Hero = () => {
           />
         </div>
         <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
-          Yeteneklerini <span className="text-primary">Paylaş</span>, Öğren
+          Yeteneklerini <span><span style={{ color: '#6C63FF' }}>Pay</span><span style={{ color: '#00D09C' }}>laş</span></span>, Öğren
         </h1>
         <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
           Yeteneklerini başkalarıyla takas et. Takazade ile yeni beceriler öğren, deneyimlerini paylaş.
