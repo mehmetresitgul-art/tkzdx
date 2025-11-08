@@ -78,25 +78,36 @@ const Chat = () => {
     const { data, error } = await supabase
       .from("conversations")
       .select("*")
-      .or(`user1_id.eq.${userId},user2_id.eq.${userId}`);
+      .or(`user1_id.eq.${userId},user2_id.eq.${userId}`)
+      .order("updated_at", { ascending: false });
 
-    if (data) {
-      // Fetch profiles for each conversation
-      const conversationsWithProfiles = await Promise.all(
-        data.map(async (conv) => {
-          const otherUserId = conv.user1_id === userId ? conv.user2_id : conv.user1_id;
-          const { data: profile } = await supabase
-            .from("profiles")
-            .select("username, avatar_url")
-            .eq("id", otherUserId)
-            .single();
-          
-          return {
-            ...conv,
-            profiles: profile || { username: "Kullanıcı", avatar_url: "" }
-          };
-        })
+    if (data && data.length > 0) {
+      // Collect all unique user IDs
+      const userIds = [...new Set(
+        data.map(conv => conv.user1_id === userId ? conv.user2_id : conv.user1_id)
+      )];
+
+      // Fetch all profiles in one query
+      const { data: profiles } = await supabase
+        .from("profiles")
+        .select("id, username, avatar_url")
+        .in("id", userIds);
+
+      // Map profiles to conversations
+      const profilesMap = new Map(
+        profiles?.map(p => [p.id, p]) || []
       );
+
+      const conversationsWithProfiles = data.map(conv => {
+        const otherUserId = conv.user1_id === userId ? conv.user2_id : conv.user1_id;
+        const profile = profilesMap.get(otherUserId);
+        
+        return {
+          ...conv,
+          profiles: profile || { username: "Kullanıcı", avatar_url: "" }
+        };
+      });
+
       setConversations(conversationsWithProfiles);
     }
   };
