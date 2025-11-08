@@ -42,12 +42,10 @@ const Hero = () => {
         <div className="flex justify-center mb-8">
           <img src={takazadeIcon} alt="Takazade Icon" className="w-24 h-24 md:w-32 md:h-32 animate-[float_3s_ease-in-out_infinite]" />
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">YetenekleriniPaylaş,
-Fırsatları Yakala!<span><span style={{
-            color: '#6C63FF'
-          }}>Pay</span><span style={{
-            color: '#00D09C'
-          }}>laş</span></span>, Öğren
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
+          Yeteneklerini <span><span style={{ color: '#6C63FF' }}>Pay</span><span style={{ color: '#00D09C' }}>laş</span></span>,
+          <br />
+          Fırsatları Yakala!
         </h1>
         <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
           Yeteneklerini başkalarıyla takas et. Takazade ile yeni beceriler öğren, deneyimlerini paylaş.
