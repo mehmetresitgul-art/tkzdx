@@ -43,7 +43,11 @@ const Hero = () => {
           <img src={takazadeIcon} alt="Takazade Icon" className="w-24 h-24 md:w-32 md:h-32 animate-[float_3s_ease-in-out_infinite]" />
         </div>
         <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
-          Yeteneklerini <span><span style={{ color: '#00D09C' }}>Pay</span><span style={{ color: '#6C63FF' }}>laş</span></span>,
+          Yeteneklerini <span><span style={{
+            color: '#00D09C'
+          }}>Pay</span><span style={{
+            color: '#6C63FF'
+          }}>laş</span></span>,
           <br />
           Fırsatları Yakala!
         </h1>
@@ -51,7 +55,7 @@ const Hero = () => {
           Yeteneklerini başkalarıyla takas et. Takazade ile yeni beceriler öğren, deneyimlerini paylaş.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-secondary border-2 border-black" onClick={handleGetStarted}>
+          <Button size="lg" onClick={handleGetStarted} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-secondary border-2 border-purple ">
             Hemen Başla
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
