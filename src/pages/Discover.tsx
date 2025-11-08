@@ -8,7 +8,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/Navbar";
 import { useToast } from "@/hooks/use-toast";
-import { Search, MessageCircle } from "lucide-react";
+import { Search, MessageCircle, Plus } from "lucide-react";
 
 interface Talent {
   id: string;
@@ -145,6 +145,13 @@ const Discover = () => {
             <h1 className="text-4xl font-bold text-foreground mb-2">Yetenekleri Keşfet</h1>
             <p className="text-muted-foreground">Öğrenmek istediğin yeteneklere sahip kişileri bul</p>
           </div>
+          <Button 
+            onClick={() => navigate("/profil")}
+            className="hidden md:flex bg-primary hover:bg-primary/90"
+          >
+            <Plus className="mr-2 h-4 w-4" />
+            Yetenek Ekle
+          </Button>
         </div>
 
         <div className="flex flex-col md:flex-row gap-4 mb-8">
@@ -208,6 +215,15 @@ const Discover = () => {
           </div>
         )}
       </div>
+
+      {/* Floating Action Button for Mobile */}
+      <Button 
+        onClick={() => navigate("/profil")}
+        className="md:hidden fixed bottom-6 right-6 h-14 w-14 rounded-full shadow-lg bg-primary hover:bg-primary/90 z-40"
+        size="icon"
+      >
+        <Plus className="h-6 w-6" />
+      </Button>
     </div>
   );
 };
