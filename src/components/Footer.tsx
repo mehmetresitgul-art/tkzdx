@@ -6,9 +6,8 @@ const Footer = () => {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <img src={logo} alt="Takazade" className="h-8 mb-4" />
-            <p className="text-muted-foreground text-sm">
-              Takasla, kazan, paylaş. Sürdürülebilir bir gelecek için birlikte.
-            </p>
+            <p className="text-muted-foreground text-sm">Takasla, kazan, paylaş.
+Sürdürülebilir bir gelecek için birlikte.</p>
           </div>
           
           <div>
