@@ -51,7 +51,7 @@ const Hero = () => {
           Yeteneklerini başkalarıyla takas et. Takazade ile yeni beceriler öğren, deneyimlerini paylaş.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-secondary" onClick={handleGetStarted}>
+          <Button size="lg" className="bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-secondary border-2 border-black" onClick={handleGetStarted}>
             Hemen Başla
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
