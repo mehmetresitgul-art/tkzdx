@@ -9,6 +9,7 @@ import { ScrollArea } from "@/components/ui/scroll-area";
 import Navbar from "@/components/Navbar";
 import { useToast } from "@/hooks/use-toast";
 import { Send } from "lucide-react";
+import { messageSchema } from "@/lib/validation";
 
 interface Message {
   id: string;
@@ -113,14 +114,29 @@ const Chat = () => {
   };
 
   const handleSendMessage = async () => {
-    if (!newMessage.trim() || !selectedConversation || !user) return;
+    if (!selectedConversation || !user) return;
+
+    // Validate input
+    const validation = messageSchema.safeParse({
+      content: newMessage,
+    });
+
+    if (!validation.success) {
+      const firstError = validation.error.errors[0];
+      toast({
+        title: "Geçersiz Mesaj",
+        description: firstError.message,
+        variant: "destructive",
+      });
+      return;
+    }
 
     const { error } = await supabase
       .from("messages")
       .insert({
         conversation_id: selectedConversation,
         sender_id: user.id,
-        content: newMessage,
+        content: newMessage.trim(),
       });
 
     if (error) {

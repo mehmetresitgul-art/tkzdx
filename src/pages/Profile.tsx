@@ -13,6 +13,7 @@ import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/Navbar";
 import { useToast } from "@/hooks/use-toast";
 import { LogOut, Plus, Trash2 } from "lucide-react";
+import { profileSchema, talentSchema } from "@/lib/validation";
 
 const Profile = () => {
   const [user, setUser] = useState<any>(null);
@@ -75,6 +76,25 @@ const Profile = () => {
 
   const handleUpdateProfile = async () => {
     setLoading(true);
+
+    // Validate input
+    const validation = profileSchema.safeParse({
+      full_name: fullName,
+      bio,
+      location,
+    });
+
+    if (!validation.success) {
+      const firstError = validation.error.errors[0];
+      toast({
+        title: "Geçersiz Giriş",
+        description: firstError.message,
+        variant: "destructive",
+      });
+      setLoading(false);
+      return;
+    }
+
     const { error } = await supabase
       .from("profiles")
       .update({
@@ -102,6 +122,25 @@ const Profile = () => {
 
   const handleAddTalent = async () => {
     setLoading(true);
+
+    // Validate input
+    const validation = talentSchema.safeParse({
+      title: talentTitle,
+      description: talentDescription,
+      category: talentCategory,
+    });
+
+    if (!validation.success) {
+      const firstError = validation.error.errors[0];
+      toast({
+        title: "Geçersiz Giriş",
+        description: firstError.message,
+        variant: "destructive",
+      });
+      setLoading(false);
+      return;
+    }
+
     const { error } = await supabase
       .from("talents")
       .insert({
