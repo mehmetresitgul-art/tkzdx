@@ -1,10 +1,18 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import takazadeIcon from "@/assets/takazade-icon.png";
 
 const Hero = () => {
   return (
     <section className="pt-32 pb-20 px-4">
       <div className="container mx-auto text-center">
+        <div className="flex justify-center mb-8">
+          <img 
+            src={takazadeIcon} 
+            alt="Takazade Icon" 
+            className="w-24 h-24 md:w-32 md:h-32 animate-[float_3s_ease-in-out_infinite]"
+          />
+        </div>
         <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
           Yeteneklerini <span className="text-primary">Paylaş</span>, Öğren
         </h1>
