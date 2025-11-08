@@ -4,18 +4,14 @@ import HowItWorks from "@/components/HowItWorks";
 import Community from "@/components/Community";
 import WhyTakazade from "@/components/WhyTakazade";
 import Footer from "@/components/Footer";
-
 const Index = () => {
-  return (
-    <div className="min-h-screen">
+  return <div className="min-h-screen">
       <Navbar />
       <Hero />
       <HowItWorks />
-      <Community />
+      
       <WhyTakazade />
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Index;
