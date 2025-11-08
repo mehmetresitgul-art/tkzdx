@@ -51,12 +51,8 @@ const Navbar = () => {
               </Link>
             </div> : <div className="hidden md:flex items-center gap-8">
               
-              <a href="#topluluk" className="text-foreground hover:text-primary transition-smooth">
-                Topluluk
-              </a>
-              <a href="#neden-takazade" className="text-foreground hover:text-primary transition-smooth">
-                Neden Takazade?
-              </a>
+              
+              
               
             </div>}
 
