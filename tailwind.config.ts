@@ -57,8 +57,6 @@ export default {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
-        "gradient-primary": "hsl(var(--gradient-primary))",
-        "gradient-secondary": "hsl(var(--gradient-secondary))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -82,19 +80,10 @@ export default {
             height: "0",
           },
         },
-        "gradient-flow": {
-          "0%, 100%": {
-            "background-position": "0% 50%",
-          },
-          "50%": {
-            "background-position": "100% 50%",
-          },
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "gradient-flow": "gradient-flow 15s ease infinite",
       },
     },
   },

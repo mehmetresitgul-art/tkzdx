@@ -11,14 +11,6 @@
   }
 }
 
-@keyframes gradient-flow {
-  0%, 100% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-}
 
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
@@ -52,10 +44,6 @@ All colors MUST be HSL.
     --shadow-secondary: 0 10px 40px -10px hsl(167 100% 41% / 0.4);
     --shadow-card: 0 20px 60px -15px rgba(0, 0, 0, 0.1);
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    
-    /* Gradient Colors */
-    --gradient-primary: 245 100% 69%;
-    --gradient-secondary: 165 100% 41%;
 
     --sidebar-background: 0 0% 98%;
     --sidebar-foreground: 240 5.3% 26.1%;
@@ -115,17 +103,5 @@ All colors MUST be HSL.
   
   .transition-smooth {
     transition: var(--transition-smooth);
-  }
-  
-  .gradient-flow {
-    background: linear-gradient(
-      -45deg,
-      hsl(var(--gradient-primary) / 0.1),
-      hsl(var(--gradient-secondary) / 0.1),
-      hsl(var(--gradient-primary) / 0.15),
-      hsl(var(--gradient-secondary) / 0.15)
-    );
-    background-size: 400% 400%;
-    animation: gradient-flow 15s ease infinite;
   }
 }
