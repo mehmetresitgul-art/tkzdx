@@ -38,7 +38,7 @@ Sürdürülebilir bir gelecek için birlikte.</p>
               <a href="#" className="text-muted-foreground hover:text-primary transition-smooth">
                 <Twitter className="w-5 h-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-smooth">
+              <a href="https://www.instagram.com/takazadecom" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-smooth">
                 <Instagram className="w-5 h-5" />
               </a>
               <a href="#" className="text-muted-foreground hover:text-primary transition-smooth">
