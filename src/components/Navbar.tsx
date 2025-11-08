@@ -33,6 +33,9 @@ const Navbar = () => {
           
           {user ? (
             <div className="hidden md:flex items-center gap-8">
+              <Link to="/" className="text-foreground hover:text-primary transition-smooth">
+                Ana Sayfa
+              </Link>
               <Link to="/kesfet" className="text-foreground hover:text-primary transition-smooth">
                 Keşfet
               </Link>
@@ -68,6 +71,13 @@ const Navbar = () => {
                 <nav className="flex flex-col gap-4 mt-8">
                   {user ? (
                     <>
+                      <Link 
+                        to="/" 
+                        className="text-foreground hover:text-primary transition-smooth py-2 text-lg"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        Ana Sayfa
+                      </Link>
                       <Link 
                         to="/kesfet" 
                         className="text-foreground hover:text-primary transition-smooth py-2 text-lg"
