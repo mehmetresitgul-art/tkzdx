@@ -10,6 +10,7 @@ import Auth from "./pages/Auth";
 import Discover from "./pages/Discover";
 import Profile from "./pages/Profile";
 import Chat from "./pages/Chat";
+import Contact from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
@@ -81,6 +82,19 @@ const AnimatedRoutes = () => {
               transition={{ duration: 0.3 }}
             >
               <Chat />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/iletisim"
+          element={
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Contact />
             </motion.div>
           }
         />

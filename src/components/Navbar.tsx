@@ -45,6 +45,9 @@ const Navbar = () => {
               <Link to="/mesajlar" className="text-foreground hover:text-primary transition-smooth">
                 Mesajlar
               </Link>
+              <Link to="/iletisim" className="text-foreground hover:text-primary transition-smooth">
+                İletişim
+              </Link>
             </div>
           ) : (
             <div className="hidden md:flex items-center gap-8">
@@ -57,6 +60,9 @@ const Navbar = () => {
               <a href="#neden-takazade" className="text-foreground hover:text-primary transition-smooth">
                 Neden Takazade?
               </a>
+              <Link to="/iletisim" className="text-foreground hover:text-primary transition-smooth">
+                İletişim
+              </Link>
             </div>
           )}
 
@@ -99,6 +105,13 @@ const Navbar = () => {
                       >
                         Mesajlar
                       </Link>
+                      <Link 
+                        to="/iletisim" 
+                        className="text-foreground hover:text-primary transition-smooth py-2 text-lg"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        İletişim
+                      </Link>
                     </>
                   ) : (
                     <>
@@ -123,6 +136,13 @@ const Navbar = () => {
                       >
                         Neden Takazade?
                       </a>
+                      <Link 
+                        to="/iletisim" 
+                        className="text-foreground hover:text-primary transition-smooth py-2 text-lg"
+                        onClick={() => setIsOpen(false)}
+                      >
+                        İletişim
+                      </Link>
                     </>
                   )}
                   <div className="flex flex-col gap-2 mt-4">
