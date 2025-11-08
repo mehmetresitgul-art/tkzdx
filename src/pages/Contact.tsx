@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Mail, MessageSquare, Send } from "lucide-react";
+import { contactSchema } from "@/lib/validation";
 const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,22 +20,32 @@ const Contact = () => {
   const navigate = useNavigate();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email || !message) {
+    
+    // Validate inputs using Zod schema
+    const validation = contactSchema.safeParse({
+      name: name.trim(),
+      email: email.trim(),
+      message: message.trim(),
+    });
+
+    if (!validation.success) {
+      const firstError = validation.error.errors[0];
       toast({
         title: "Hata",
-        description: "Lütfen tüm alanları doldurun.",
+        description: firstError.message,
         variant: "destructive"
       });
       return;
     }
+
     setIsSubmitting(true);
     try {
       const {
         error
       } = await supabase.from("contact_messages").insert([{
-        name,
-        email,
-        message
+        name: validation.data.name,
+        email: validation.data.email,
+        message: validation.data.message
       }]);
       if (error) throw error;
       toast({

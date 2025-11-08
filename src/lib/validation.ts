@@ -70,3 +70,22 @@ export const messageSchema = z.object({
     .min(1, { message: "Mesaj boş olamaz" })
     .max(2000, { message: "Mesaj 2000 karakterden kısa olmalı" }),
 });
+
+// Contact form validation schema
+export const contactSchema = z.object({
+  name: z
+    .string()
+    .trim()
+    .min(1, { message: "Ad soyad boş olamaz" })
+    .max(100, { message: "Ad soyad 100 karakterden kısa olmalı" }),
+  email: z
+    .string()
+    .trim()
+    .email({ message: "Geçerli bir e-posta adresi girin" })
+    .max(255, { message: "E-posta adresi 255 karakterden kısa olmalı" }),
+  message: z
+    .string()
+    .trim()
+    .min(1, { message: "Mesaj boş olamaz" })
+    .max(2000, { message: "Mesaj 2000 karakterden kısa olmalı" }),
+});
