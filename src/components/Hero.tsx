@@ -37,8 +37,9 @@ const Hero = () => {
       behavior: "smooth"
     });
   };
-  return <section className="pt-32 pb-20 px-4">
-      <div className="container mx-auto text-center">
+  return <section className="pt-32 pb-20 px-4 relative overflow-hidden">
+      <div className="absolute inset-0 gradient-flow -z-10"></div>
+      <div className="container mx-auto text-center relative z-10">
         <div className="flex justify-center mb-8">
           <img src={takazadeIcon} alt="Takazade Icon" className="w-24 h-24 md:w-32 md:h-32 animate-[float_3s_ease-in-out_infinite]" />
         </div>
