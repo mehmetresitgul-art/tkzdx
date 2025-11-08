@@ -10,6 +10,7 @@ import Navbar from "@/components/Navbar";
 import { useToast } from "@/hooks/use-toast";
 import { Send } from "lucide-react";
 import { messageSchema } from "@/lib/validation";
+import { Badge } from "@/components/ui/badge";
 
 interface Message {
   id: string;
@@ -26,6 +27,7 @@ interface Conversation {
     username: string;
     avatar_url: string;
   };
+  unread_count?: number;
 }
 
 const Chat = () => {
@@ -98,13 +100,28 @@ const Chat = () => {
         profiles?.map(p => [p.id, p]) || []
       );
 
+      // Fetch unread message counts for all conversations
+      const { data: unreadCounts } = await supabase
+        .from("messages")
+        .select("conversation_id")
+        .in("conversation_id", data.map(c => c.id))
+        .eq("is_read", false)
+        .neq("sender_id", userId);
+
+      // Count unread messages per conversation
+      const unreadMap = new Map<string, number>();
+      unreadCounts?.forEach(msg => {
+        unreadMap.set(msg.conversation_id, (unreadMap.get(msg.conversation_id) || 0) + 1);
+      });
+
       const conversationsWithProfiles = data.map(conv => {
         const otherUserId = conv.user1_id === userId ? conv.user2_id : conv.user1_id;
         const profile = profilesMap.get(otherUserId);
         
         return {
           ...conv,
-          profiles: profile || { username: "Kullanıcı", avatar_url: "" }
+          profiles: profile || { username: "Kullanıcı", avatar_url: "" },
+          unread_count: unreadMap.get(conv.id) || 0
         };
       });
 
@@ -193,7 +210,14 @@ const Chat = () => {
                           </AvatarFallback>
                         </Avatar>
                         <div className="flex-1">
-                          <p className="font-semibold">{conv.profiles?.username}</p>
+                          <div className="flex items-center justify-between">
+                            <p className="font-semibold">{conv.profiles?.username}</p>
+                            {conv.unread_count && conv.unread_count > 0 && (
+                              <Badge variant="default" className="ml-2">
+                                {conv.unread_count}
+                              </Badge>
+                            )}
+                          </div>
                           <p className="text-sm text-muted-foreground">
                             Son mesaj
                           </p>
