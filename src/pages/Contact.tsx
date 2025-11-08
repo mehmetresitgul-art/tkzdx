@@ -8,41 +8,39 @@ import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Mail, MessageSquare, Send } from "lucide-react";
-
 const Contact = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { toast } = useToast();
+  const {
+    toast
+  } = useToast();
   const navigate = useNavigate();
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
     if (!name || !email || !message) {
       toast({
         title: "Hata",
         description: "Lütfen tüm alanları doldurun.",
-        variant: "destructive",
+        variant: "destructive"
       });
       return;
     }
-
     setIsSubmitting(true);
-
     try {
-      const { error } = await supabase
-        .from("contact_messages")
-        .insert([{ name, email, message }]);
-
+      const {
+        error
+      } = await supabase.from("contact_messages").insert([{
+        name,
+        email,
+        message
+      }]);
       if (error) throw error;
-
       toast({
         title: "Başarılı!",
-        description: "Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız.",
+        description: "Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız."
       });
-
       setName("");
       setEmail("");
       setMessage("");
@@ -51,15 +49,13 @@ const Contact = () => {
       toast({
         title: "Hata",
         description: "Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.",
-        variant: "destructive",
+        variant: "destructive"
       });
     } finally {
       setIsSubmitting(false);
     }
   };
-
-  return (
-    <div className="min-h-screen flex flex-col">
+  return <div className="min-h-screen flex flex-col">
       <Navbar />
       
       <main className="flex-1 pt-24 pb-16 px-4">
@@ -77,17 +73,13 @@ const Contact = () => {
             <div className="bg-card p-8 rounded-lg border border-border hover:shadow-lg transition-smooth">
               <Mail className="w-12 h-12 text-primary mb-4" />
               <h3 className="text-xl font-semibold mb-2 text-foreground">E-posta</h3>
-              <p className="text-muted-foreground">
-                iletisim@takazade.com
-              </p>
+              <p className="text-muted-foreground">takazade.com@gmail.com</p>
             </div>
 
             <div className="bg-card p-8 rounded-lg border border-border hover:shadow-lg transition-smooth">
               <MessageSquare className="w-12 h-12 text-primary mb-4" />
               <h3 className="text-xl font-semibold mb-2 text-foreground">Sosyal Medya</h3>
-              <p className="text-muted-foreground">
-                Sosyal medya hesaplarımızdan bizi takip edebilirsiniz.
-              </p>
+              <p className="text-muted-foreground">Sosyal medya hesaplarımızdan bize ulaşabilirsiniz.</p>
             </div>
           </div>
 
@@ -101,59 +93,28 @@ const Contact = () => {
                 <label htmlFor="name" className="block text-sm font-medium mb-2 text-foreground">
                   Adınız Soyadınız
                 </label>
-                <Input
-                  id="name"
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Adınızı ve soyadınızı girin"
-                  className="w-full"
-                  required
-                />
+                <Input id="name" type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Adınızı ve soyadınızı girin" className="w-full" required />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium mb-2 text-foreground">
                   E-posta Adresiniz
                 </label>
-                <Input
-                  id="email"
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="ornek@email.com"
-                  className="w-full"
-                  required
-                />
+                <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="ornek@email.com" className="w-full" required />
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-2 text-foreground">
                   Mesajınız
                 </label>
-                <Textarea
-                  id="message"
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder="Mesajınızı buraya yazın..."
-                  className="w-full min-h-[150px]"
-                  required
-                />
+                <Textarea id="message" value={message} onChange={e => setMessage(e.target.value)} placeholder="Mesajınızı buraya yazın..." className="w-full min-h-[150px]" required />
               </div>
 
-              <Button
-                type="submit"
-                disabled={isSubmitting}
-                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground"
-              >
-                {isSubmitting ? (
-                  "Gönderiliyor..."
-                ) : (
-                  <>
+              <Button type="submit" disabled={isSubmitting} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+                {isSubmitting ? "Gönderiliyor..." : <>
                     <Send className="w-4 h-4 mr-2" />
                     Mesajı Gönder
-                  </>
-                )}
+                  </>}
               </Button>
             </form>
           </div>
@@ -161,8 +122,6 @@ const Contact = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default Contact;
