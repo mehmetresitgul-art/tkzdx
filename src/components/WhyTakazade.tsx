@@ -30,15 +30,15 @@ const WhyTakazade = () => {
           Takas platformlarında lider olmamızın sebepleri
         </p>
         
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
           {features.map((feature, index) => (
-            <Card key={index} className="border-2 shadow-card transition-smooth hover:shadow-secondary">
-              <CardContent className="pt-8 text-center">
+            <Card key={index} className="border-2 shadow-card transition-smooth hover:shadow-secondary active:scale-95 touch-manipulation">
+              <CardContent className="pt-8 pb-8 text-center">
                 <div className="w-16 h-16 mx-auto mb-6 rounded-full bg-secondary/10 flex items-center justify-center">
                   <feature.icon className="w-8 h-8 text-secondary" />
                 </div>
-                <h3 className="text-2xl font-semibold mb-3 text-foreground">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
+                <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">{feature.title}</h3>
+                <p className="text-base text-muted-foreground">{feature.description}</p>
               </CardContent>
             </Card>
           ))}

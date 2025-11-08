@@ -59,59 +59,59 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild className="md:hidden">
-                <Button variant="ghost" size="icon">
-                  <Menu className="h-6 w-6" />
+                <Button variant="ghost" size="icon" className="touch-manipulation">
+                  <Menu className="h-7 w-7" />
                 </Button>
               </SheetTrigger>
               <SheetContent side="right" className="w-[300px]">
-                <nav className="flex flex-col gap-4 mt-8">
+                <nav className="flex flex-col gap-1 mt-8">
                   {user ? <>
-                      <Link to="/" className="text-foreground hover:text-primary transition-smooth py-2 text-lg" onClick={() => setIsOpen(false)}>
+                      <Link to="/" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
                         Ana Sayfa
                       </Link>
-                      <Link to="/kesfet" className="text-foreground hover:text-primary transition-smooth py-2 text-lg" onClick={() => setIsOpen(false)}>
+                      <Link to="/kesfet" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
                         Keşfet
                       </Link>
-                      <Link to="/profil" className="text-foreground hover:text-primary transition-smooth py-2 text-lg" onClick={() => setIsOpen(false)}>
+                      <Link to="/profil" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
                         Profilim
                       </Link>
-                      <Link to="/mesajlar" className="text-foreground hover:text-primary transition-smooth py-2 text-lg" onClick={() => setIsOpen(false)}>
+                      <Link to="/mesajlar" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
                         Mesajlar
                       </Link>
-                      <Link to="/iletisim" className="text-foreground hover:text-primary transition-smooth py-2 text-lg" onClick={() => setIsOpen(false)}>
+                      <Link to="/iletisim" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
                         İletişim
                       </Link>
                     </> : <>
-                      <a href="#nasil-calisir" className="text-foreground hover:text-primary transition-smooth py-2 text-lg" onClick={() => setIsOpen(false)}>
+                      <a href="#nasil-calisir" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
                         Nasıl Çalışır?
                       </a>
-                      <a href="#topluluk" className="text-foreground hover:text-primary transition-smooth py-2 text-lg" onClick={() => setIsOpen(false)}>
+                      <a href="#topluluk" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
                         Topluluk
                       </a>
-                      <a href="#neden-takazade" className="text-foreground hover:text-primary transition-smooth py-2 text-lg" onClick={() => setIsOpen(false)}>
+                      <a href="#neden-takazade" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
                         Neden Takazade?
                       </a>
-                      <Link to="/iletisim" className="text-foreground hover:text-primary transition-smooth py-2 text-lg" onClick={() => setIsOpen(false)}>
+                      <Link to="/iletisim" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
                         İletişim
                       </Link>
                     </>}
-                  <div className="flex flex-col gap-2 mt-4">
-                    {user ? <Button onClick={() => {
+                  <div className="flex flex-col gap-3 mt-6">
+                    {user ? <Button size="lg" onClick={() => {
                     setIsOpen(false);
                     navigate("/profil");
-                  }} className="bg-primary hover:bg-primary/90 w-full">
+                  }} className="bg-primary hover:bg-primary/90 w-full min-h-[52px]">
                         Hesabım
                       </Button> : <>
-                        <Button variant="ghost" onClick={() => {
+                        <Button size="lg" variant="ghost" onClick={() => {
                       setIsOpen(false);
                       navigate("/auth");
-                    }} className="w-full">
+                    }} className="w-full min-h-[52px]">
                           Giriş Yap
                         </Button>
-                        <Button onClick={() => {
+                        <Button size="lg" onClick={() => {
                       setIsOpen(false);
                       navigate("/auth");
-                    }} className="bg-primary hover:bg-primary/90 w-full">
+                    }} className="bg-primary hover:bg-primary/90 w-full min-h-[52px]">
                           Üye Ol
                         </Button>
                       </>}

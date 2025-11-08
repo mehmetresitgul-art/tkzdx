@@ -54,12 +54,12 @@ const Hero = () => {
         <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
           Yeteneklerini başkalarıyla takas et. Takazade ile yeni beceriler öğren, deneyimlerini paylaş.
         </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button size="lg" onClick={handleGetStarted} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-secondary border-2 border-purple ">
+        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto px-4">
+          <Button size="xl" onClick={handleGetStarted} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-secondary border-2 border-purple w-full sm:w-auto">
             Hemen Başla
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
-          <Button size="lg" variant="outline" className="border-2 border-[#6C63FF]" onClick={handleHowItWorks}>
+          <Button size="xl" variant="outline" className="border-2 border-[#6C63FF] w-full sm:w-auto" onClick={handleHowItWorks}>
             Nasıl Çalışır?
           </Button>
         </div>
