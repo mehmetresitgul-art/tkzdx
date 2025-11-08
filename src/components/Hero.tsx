@@ -42,12 +42,8 @@ const Hero = () => {
         <div className="flex justify-center mb-8">
           <img src={takazadeIcon} alt="Takazade Icon" className="w-24 h-24 md:w-32 md:h-32 animate-[float_3s_ease-in-out_infinite]" />
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">Yeteneklerini Paylaş,
-Fırsatları Yakala!<span><span style={{
-            color: '#6C63FF'
-          }}>Pay</span><span style={{
-            color: '#00D09C'
-          }}>laş</span></span>,
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
+          Yeteneklerini <span className="bg-gradient-to-r from-[#6C63FF] via-[#4D9FFF] to-[#00D09C] bg-clip-text text-transparent">Paylaş,</span>
           <br />
           Fırsatları Yakala!
         </h1>
