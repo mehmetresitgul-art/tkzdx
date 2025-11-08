@@ -1,9 +1,7 @@
 import logo from "@/assets/takazade-logo.png";
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
-
 const Footer = () => {
-  return (
-    <footer className="bg-card border-t border-border py-12 px-4">
+  return <footer className="bg-card border-t border-border py-12 px-4">
       <div className="container mx-auto">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
@@ -24,7 +22,7 @@ const Footer = () => {
           </div>
           
           <div>
-            <h4 className="font-semibold mb-4 text-foreground">Yasal</h4>
+            <h4 className="font-semibold mb-4 text-foreground">Kurumsal</h4>
             <ul className="space-y-2 text-sm">
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-smooth">Kullanım Şartları</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-smooth">Gizlilik Politikası</a></li>
@@ -55,8 +53,6 @@ const Footer = () => {
           <p>&copy; 2025 Takazade. Tüm hakları saklıdır.</p>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 };
-
 export default Footer;
