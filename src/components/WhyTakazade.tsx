@@ -5,17 +5,17 @@ const features = [
   {
     icon: Shield,
     title: "Güvenli",
-    description: "Kimlik doğrulama ve değerlendirme sistemi ile güvenli takas deneyimi.",
+    description: "Kimlik doğrulama sistemi ile güvenli yetenek takas deneyimi.",
   },
   {
     icon: Zap,
-    title: "Hızlı",
-    description: "Anında eşleşme algoritması ile istediğin ürünü hızlıca bul.",
+    title: "Kolay",
+    description: "Direkt mesajlaşma ile öğrenmek istediğin kişilerle kolayca iletişime geç.",
   },
   {
     icon: Globe,
-    title: "Çevre Dostu",
-    description: "Kullanılmayan eşyaları değerlendirerek çevreye katkıda bulun.",
+    title: "Topluluk",
+    description: "Yeteneklerini paylaşarak ve yeni beceriler öğrenerek büyüyen bir topluluğun parçası ol.",
   },
 ];
 

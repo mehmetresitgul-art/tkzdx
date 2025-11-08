@@ -38,96 +38,6 @@ export type Database = {
         }
         Relationships: []
       }
-      exchanges: {
-        Row: {
-          created_at: string
-          id: string
-          message: string | null
-          owner_id: string
-          owner_item_id: string
-          requester_id: string
-          requester_item_id: string
-          status: string | null
-          updated_at: string
-        }
-        Insert: {
-          created_at?: string
-          id?: string
-          message?: string | null
-          owner_id: string
-          owner_item_id: string
-          requester_id: string
-          requester_item_id: string
-          status?: string | null
-          updated_at?: string
-        }
-        Update: {
-          created_at?: string
-          id?: string
-          message?: string | null
-          owner_id?: string
-          owner_item_id?: string
-          requester_id?: string
-          requester_item_id?: string
-          status?: string | null
-          updated_at?: string
-        }
-        Relationships: [
-          {
-            foreignKeyName: "exchanges_owner_item_id_fkey"
-            columns: ["owner_item_id"]
-            isOneToOne: false
-            referencedRelation: "items"
-            referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "exchanges_requester_item_id_fkey"
-            columns: ["requester_item_id"]
-            isOneToOne: false
-            referencedRelation: "items"
-            referencedColumns: ["id"]
-          },
-        ]
-      }
-      items: {
-        Row: {
-          category: string
-          condition: string | null
-          created_at: string
-          description: string | null
-          id: string
-          images: string[] | null
-          status: string | null
-          title: string
-          updated_at: string
-          user_id: string
-        }
-        Insert: {
-          category: string
-          condition?: string | null
-          created_at?: string
-          description?: string | null
-          id?: string
-          images?: string[] | null
-          status?: string | null
-          title: string
-          updated_at?: string
-          user_id: string
-        }
-        Update: {
-          category?: string
-          condition?: string | null
-          created_at?: string
-          description?: string | null
-          id?: string
-          images?: string[] | null
-          status?: string | null
-          title?: string
-          updated_at?: string
-          user_id?: string
-        }
-        Relationships: []
-      }
       messages: {
         Row: {
           content: string
@@ -193,6 +103,39 @@ export type Database = {
           location?: string | null
           updated_at?: string
           username?: string
+        }
+        Relationships: []
+      }
+      talents: {
+        Row: {
+          category: string
+          created_at: string
+          description: string | null
+          id: string
+          status: string | null
+          title: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          category: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          status?: string | null
+          title: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          description?: string | null
+          id?: string
+          status?: string | null
+          title?: string
+          updated_at?: string
+          user_id?: string
         }
         Relationships: []
       }

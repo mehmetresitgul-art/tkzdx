@@ -9,14 +9,15 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Badge } from "@/components/ui/badge";
 import Navbar from "@/components/Navbar";
 import { useToast } from "@/hooks/use-toast";
-import { LogOut, Plus, Edit, Trash2 } from "lucide-react";
+import { LogOut, Plus, Trash2 } from "lucide-react";
 
 const Profile = () => {
   const [user, setUser] = useState<any>(null);
   const [profile, setProfile] = useState<any>(null);
-  const [myItems, setMyItems] = useState<any[]>([]);
+  const [myTalents, setMyTalents] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
   
@@ -25,11 +26,10 @@ const Profile = () => {
   const [bio, setBio] = useState("");
   const [location, setLocation] = useState("");
   
-  // Item form states
-  const [itemTitle, setItemTitle] = useState("");
-  const [itemDescription, setItemDescription] = useState("");
-  const [itemCategory, setItemCategory] = useState("");
-  const [itemCondition, setItemCondition] = useState("");
+  // Talent form states
+  const [talentTitle, setTalentTitle] = useState("");
+  const [talentDescription, setTalentDescription] = useState("");
+  const [talentCategory, setTalentCategory] = useState("");
 
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -41,7 +41,7 @@ const Profile = () => {
       } else {
         setUser(session.user);
         fetchProfile(session.user.id);
-        fetchMyItems(session.user.id);
+        fetchMyTalents(session.user.id);
       }
     });
   }, [navigate]);
@@ -61,15 +61,15 @@ const Profile = () => {
     }
   };
 
-  const fetchMyItems = async (userId: string) => {
+  const fetchMyTalents = async (userId: string) => {
     const { data, error } = await supabase
-      .from("items")
+      .from("talents")
       .select("*")
       .eq("user_id", userId)
       .order("created_at", { ascending: false });
 
     if (data) {
-      setMyItems(data);
+      setMyTalents(data);
     }
   };
 
@@ -100,16 +100,15 @@ const Profile = () => {
     setLoading(false);
   };
 
-  const handleAddItem = async () => {
+  const handleAddTalent = async () => {
     setLoading(true);
     const { error } = await supabase
-      .from("items")
+      .from("talents")
       .insert({
         user_id: user.id,
-        title: itemTitle,
-        description: itemDescription,
-        category: itemCategory,
-        condition: itemCondition,
+        title: talentTitle,
+        description: talentDescription,
+        category: talentCategory,
       });
 
     if (error) {
@@ -121,23 +120,22 @@ const Profile = () => {
     } else {
       toast({
         title: "Başarılı",
-        description: "Eşya eklendi",
+        description: "Yetenek eklendi",
       });
       setDialogOpen(false);
-      setItemTitle("");
-      setItemDescription("");
-      setItemCategory("");
-      setItemCondition("");
-      fetchMyItems(user.id);
+      setTalentTitle("");
+      setTalentDescription("");
+      setTalentCategory("");
+      fetchMyTalents(user.id);
     }
     setLoading(false);
   };
 
-  const handleDeleteItem = async (itemId: string) => {
+  const handleDeleteTalent = async (talentId: string) => {
     const { error } = await supabase
-      .from("items")
+      .from("talents")
       .update({ status: "deleted" })
-      .eq("id", itemId);
+      .eq("id", talentId);
 
     if (error) {
       toast({
@@ -148,9 +146,9 @@ const Profile = () => {
     } else {
       toast({
         title: "Başarılı",
-        description: "Eşya silindi",
+        description: "Yetenek silindi",
       });
-      fetchMyItems(user.id);
+      fetchMyTalents(user.id);
     }
   };
 
@@ -175,8 +173,7 @@ const Profile = () => {
         <Tabs defaultValue="profile" className="space-y-6">
           <TabsList>
             <TabsTrigger value="profile">Profil Bilgileri</TabsTrigger>
-            <TabsTrigger value="items">Eşyalarım</TabsTrigger>
-            <TabsTrigger value="exchanges">Takas İstekleri</TabsTrigger>
+            <TabsTrigger value="talents">Yeteneklerim</TabsTrigger>
           </TabsList>
 
           <TabsContent value="profile" className="space-y-4">
@@ -230,73 +227,62 @@ const Profile = () => {
             </Card>
           </TabsContent>
 
-          <TabsContent value="items" className="space-y-4">
+          <TabsContent value="talents" className="space-y-4">
             <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold">Eşyalarım</h2>
+              <h2 className="text-2xl font-bold">Yeteneklerim</h2>
               <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                 <DialogTrigger asChild>
                   <Button>
                     <Plus className="mr-2 h-4 w-4" />
-                    Eşya Ekle
+                    Yetenek Ekle
                   </Button>
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
-                    <DialogTitle>Yeni Eşya Ekle</DialogTitle>
+                    <DialogTitle>Yeni Yetenek Ekle</DialogTitle>
                     <DialogDescription>
-                      Takas için sunmak istediğiniz eşyayı ekleyin
+                      Paylaşmak istediğiniz yeteneği ekleyin
                     </DialogDescription>
                   </DialogHeader>
                   <div className="space-y-4">
                     <div>
-                      <Label htmlFor="itemTitle">Başlık</Label>
+                      <Label htmlFor="talentTitle">Başlık</Label>
                       <Input
-                        id="itemTitle"
-                        value={itemTitle}
-                        onChange={(e) => setItemTitle(e.target.value)}
+                        id="talentTitle"
+                        value={talentTitle}
+                        onChange={(e) => setTalentTitle(e.target.value)}
                         className="mt-1"
+                        placeholder="Örn: Web Tasarımı"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="itemDescription">Açıklama</Label>
+                      <Label htmlFor="talentDescription">Açıklama</Label>
                       <Textarea
-                        id="itemDescription"
-                        value={itemDescription}
-                        onChange={(e) => setItemDescription(e.target.value)}
+                        id="talentDescription"
+                        value={talentDescription}
+                        onChange={(e) => setTalentDescription(e.target.value)}
                         className="mt-1"
+                        placeholder="Yeteneğiniz hakkında detaylı bilgi verin"
                       />
                     </div>
                     <div>
-                      <Label htmlFor="itemCategory">Kategori</Label>
-                      <Select value={itemCategory} onValueChange={setItemCategory}>
+                      <Label htmlFor="talentCategory">Kategori</Label>
+                      <Select value={talentCategory} onValueChange={setTalentCategory}>
                         <SelectTrigger className="mt-1">
                           <SelectValue placeholder="Kategori seçin" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="elektronik">Elektronik</SelectItem>
-                          <SelectItem value="kitap">Kitap</SelectItem>
-                          <SelectItem value="oyuncak">Oyuncak</SelectItem>
-                          <SelectItem value="giyim">Giyim</SelectItem>
-                          <SelectItem value="ev">Ev Eşyası</SelectItem>
+                          <SelectItem value="yazilim">Yazılım</SelectItem>
+                          <SelectItem value="tasarim">Tasarım</SelectItem>
+                          <SelectItem value="muzik">Müzik</SelectItem>
+                          <SelectItem value="dil">Dil</SelectItem>
+                          <SelectItem value="spor">Spor</SelectItem>
+                          <SelectItem value="egitim">Eğitim</SelectItem>
                           <SelectItem value="diger">Diğer</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
-                    <div>
-                      <Label htmlFor="itemCondition">Durum</Label>
-                      <Select value={itemCondition} onValueChange={setItemCondition}>
-                        <SelectTrigger className="mt-1">
-                          <SelectValue placeholder="Durum seçin" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="yeni">Yeni</SelectItem>
-                          <SelectItem value="iyi">İyi</SelectItem>
-                          <SelectItem value="orta">Orta</SelectItem>
-                          <SelectItem value="kullanilmis">Kullanılmış</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-                    <Button onClick={handleAddItem} disabled={loading} className="w-full">
+                    <Button onClick={handleAddTalent} disabled={loading} className="w-full">
                       Ekle
                     </Button>
                   </div>
@@ -305,45 +291,35 @@ const Profile = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {myItems.map((item) => (
-                <Card key={item.id}>
+              {myTalents.filter(t => t.status === 'active').map((talent) => (
+                <Card key={talent.id}>
                   <CardHeader>
-                    <div className="aspect-square bg-muted rounded-md mb-4 flex items-center justify-center">
-                      <span className="text-muted-foreground">Fotoğraf yok</span>
+                    <div className="flex justify-between items-start">
+                      <CardTitle className="text-lg">{talent.title}</CardTitle>
+                      <Badge variant="secondary">{talent.category}</Badge>
                     </div>
-                    <CardTitle>{item.title}</CardTitle>
-                    <CardDescription>{item.description}</CardDescription>
+                    <CardDescription className="line-clamp-3">{talent.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <div className="flex gap-2">
-                      <Button variant="outline" size="sm" className="flex-1">
-                        <Edit className="h-4 w-4" />
-                      </Button>
-                      <Button
-                        variant="destructive"
-                        size="sm"
-                        className="flex-1"
-                        onClick={() => handleDeleteItem(item.id)}
-                      >
-                        <Trash2 className="h-4 w-4" />
-                      </Button>
-                    </div>
+                    <Button
+                      variant="destructive"
+                      size="sm"
+                      className="w-full"
+                      onClick={() => handleDeleteTalent(talent.id)}
+                    >
+                      <Trash2 className="mr-2 h-4 w-4" />
+                      Sil
+                    </Button>
                   </CardContent>
                 </Card>
               ))}
             </div>
-          </TabsContent>
 
-          <TabsContent value="exchanges">
-            <Card>
-              <CardHeader>
-                <CardTitle>Takas İstekleri</CardTitle>
-                <CardDescription>Gelen ve giden takas istekleriniz</CardDescription>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">Henüz takas isteği bulunmuyor.</p>
-              </CardContent>
-            </Card>
+            {myTalents.filter(t => t.status === 'active').length === 0 && (
+              <div className="text-center py-12">
+                <p className="text-muted-foreground">Henüz yetenek eklenmemiş</p>
+              </div>
+            )}
           </TabsContent>
         </Tabs>
       </div>

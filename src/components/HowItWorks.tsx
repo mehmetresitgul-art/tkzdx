@@ -4,18 +4,18 @@ import { Card, CardContent } from "@/components/ui/card";
 const steps = [
   {
     icon: Upload,
-    title: "Eşyanı Ekle",
-    description: "Takas etmek istediğin eşyanın fotoğrafını yükle ve bilgilerini gir.",
+    title: "Yeteneğini Paylaş",
+    description: "Paylaşmak istediğin yeteneğini ekle ve detaylarını gir.",
   },
   {
     icon: Search,
-    title: "Arama Yap",
-    description: "İstediğin eşyayı bul ve takas teklifinde bulun.",
+    title: "Keşfet",
+    description: "Öğrenmek istediğin yeteneğe sahip kişileri bul.",
   },
   {
     icon: Repeat,
-    title: "Takas Et",
-    description: "Anlaşmaya var, buluş ve takasını gerçekleştir!",
+    title: "İletişime Geç",
+    description: "Mesajlaş, anlaş ve yetenek takasını gerçekleştir!",
   },
 ];
 
