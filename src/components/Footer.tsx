@@ -1,8 +1,11 @@
 import logo from "@/assets/takazade-logo.png";
 import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { motion } from "framer-motion";
+
 const Footer = () => {
-  return <footer className="bg-card border-t border-border py-12 px-4">
-      <div className="container mx-auto">
+  return <footer className="bg-card border-t border-border py-12 px-4 relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-t from-primary/5 to-transparent" />
+      <div className="container mx-auto relative z-10">
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <img src={logo} alt="Takazade" className="h-8 mb-4" />
@@ -33,18 +36,38 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4 text-foreground">Sosyal Medya</h4>
             <div className="flex gap-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-smooth">
+              <motion.a 
+                href="#" 
+                className="text-muted-foreground hover:text-primary transition-smooth"
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+              >
                 <Facebook className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-smooth">
+              </motion.a>
+              <motion.a 
+                href="#" 
+                className="text-muted-foreground hover:text-primary transition-smooth"
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+              >
                 <Twitter className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-smooth">
+              </motion.a>
+              <motion.a 
+                href="#" 
+                className="text-muted-foreground hover:text-primary transition-smooth"
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+              >
                 <Instagram className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-smooth">
+              </motion.a>
+              <motion.a 
+                href="#" 
+                className="text-muted-foreground hover:text-primary transition-smooth"
+                whileHover={{ scale: 1.2, rotate: 5 }}
+                whileTap={{ scale: 0.9 }}
+              >
                 <Linkedin className="w-5 h-5" />
-              </a>
+              </motion.a>
             </div>
           </div>
         </div>
