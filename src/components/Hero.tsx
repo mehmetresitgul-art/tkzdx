@@ -55,7 +55,7 @@ const Hero = () => {
             Hemen Başla
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
-          <Button size="lg" variant="outline" className="border-2" onClick={handleHowItWorks}>
+          <Button size="lg" variant="outline" className="border-2 border-[#6C63FF]" onClick={handleHowItWorks}>
             Nasıl Çalışır?
           </Button>
         </div>
