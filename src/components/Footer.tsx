@@ -17,7 +17,7 @@ const Footer = () => {
             <h4 className="font-semibold mb-4 text-foreground">{t('footer.quickLinks')}</h4>
             <ul className="space-y-2 text-sm">
               <li><a href="/hakkimizda" className="text-muted-foreground hover:text-primary transition-smooth">{t('footer.about')}</a></li>
-              <li><a href="#nasil-calisir" className="text-muted-foreground hover:text-primary transition-smooth">{t('footer.howItWorks')}</a></li>
+              <li><a href="/#nasil-calisir" className="text-muted-foreground hover:text-primary transition-smooth">{t('footer.howItWorks')}</a></li>
               
               <li><a href="/iletisim" className="text-muted-foreground hover:text-primary transition-smooth">{t('footer.contact')}</a></li>
             </ul>
