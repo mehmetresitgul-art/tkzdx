@@ -26,7 +26,7 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4 text-foreground">{t('footer.corporate')}</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-smooth">{t('footer.terms')}</a></li>
+              <li><a href="/kullanim-sartlari" className="text-muted-foreground hover:text-primary transition-smooth">{t('footer.terms')}</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-smooth">{t('footer.privacy')}</a></li>
               <li><a href="#" className="text-muted-foreground hover:text-primary transition-smooth">{t('footer.cookies')}</a></li>
             </ul>

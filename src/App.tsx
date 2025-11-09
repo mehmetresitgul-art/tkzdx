@@ -14,6 +14,7 @@ import Profile from "./pages/Profile";
 import Chat from "./pages/Chat";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
+import Terms from "./pages/Terms";
 
 const queryClient = new QueryClient();
 
@@ -111,6 +112,19 @@ const AnimatedRoutes = () => {
               transition={{ duration: 0.3 }}
             >
               <About />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/kullanim-sartlari"
+          element={
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Terms />
             </motion.div>
           }
         />

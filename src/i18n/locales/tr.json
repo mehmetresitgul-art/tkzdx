@@ -113,5 +113,31 @@
     "cookies": "Çerez Politikası",
     "socialMedia": "Sosyal Medya",
     "copyright": "© 2025 Takazade | 23rd Floor, New York, USA | Tüm hakları saklıdır."
+  },
+  "terms": {
+    "title": "Kullanım Şartları",
+    "lastUpdate": "Son güncelleme: 9 Kasım 2025",
+    "intro": "Takazade platformunu kullanarak aşağıdaki şartları kabul etmiş sayılırsınız. Bu şartlar, kullanıcılarımızın haklarını korumak ve platformun güvenli şekilde kullanılmasını sağlamak amacıyla hazırlanmıştır.",
+    "section1Title": "1. Genel Bilgiler",
+    "section1Content": "Takazade, bireylerin bilgi, beceri ve yeteneklerini paylaşabildiği dijital bir topluluk platformudur.",
+    "section2Title": "2. Kullanım Koşulları",
+    "section2Point1": "Takazade'yi kullanarak, hizmeti yalnızca yasal amaçlarla ve dürüst şekilde kullanmayı kabul edersiniz.",
+    "section2Point2": "Paylaşılan tüm içeriklerin (metin, görsel, bağlantı vb.) doğruluğundan kullanıcı sorumludur.",
+    "section2Point3": "Platform, kullanıcılar arasında gerçekleşen takas, anlaşma veya iletişimden doğan durumlardan sorumlu değildir.",
+    "section3Title": "3. Üyelik ve Hesap Güvenliği",
+    "section3Point1": "Her kullanıcı kendi hesabının güvenliğinden sorumludur.",
+    "section3Point2": "Hesabınızı üçüncü kişilerle paylaşmayınız.",
+    "section3Point3": "Hesap güvenliği ihlali tespit edildiğinde Takazade, hesabı geçici veya kalıcı olarak askıya alma hakkını saklı tutar.",
+    "section4Title": "4. Fikri Mülkiyet Hakları",
+    "section4Content": "Takazade'nin logosu, tasarımı, yazılı içeriği ve markası koruma altındadır. İzinsiz kopyalanamaz, çoğaltılamaz veya ticari amaçla kullanılamaz.",
+    "section5Title": "5. Sorumluluk Reddi",
+    "section5Point1": "Takazade, kullanıcılar tarafından sağlanan içeriklerin doğruluğunu garanti etmez.",
+    "section5Point2": "Platform, hizmetin kesintisiz veya hatasız çalışacağını taahhüt etmez; ancak olası sorunları en kısa sürede gidermeyi amaçlar.",
+    "section6Title": "6. Değişiklik Hakkı",
+    "section6Point1": "Takazade, bu şartlarda dilediği zaman değişiklik yapma hakkını saklı tutar.",
+    "section6Point2": "Güncellenmiş şartlar web sitesinde yayınlandığı anda yürürlüğe girer.",
+    "section7Title": "7. İletişim",
+    "email": "takazade.com@gmail.com",
+    "address": "1330 Avenue of the Americas, 23rd Floor, New York, USA"
   }
 }

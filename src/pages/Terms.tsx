@@ -1,0 +1,112 @@
+import Navbar from "@/components/Navbar";
+import Footer from "@/components/Footer";
+import { useTranslation } from "react-i18next";
+
+const Terms = () => {
+  const { t } = useTranslation();
+
+  return (
+    <div className="min-h-screen flex flex-col bg-gradient-to-b from-background to-secondary/20">
+      <Navbar />
+      
+      <main className="flex-1 container mx-auto px-4 py-16 md:py-24">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-12">
+            <h1 className="text-4xl md:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-primary/60 bg-clip-text text-transparent">
+              {t('terms.title')}
+            </h1>
+            <p className="text-muted-foreground text-lg">
+              {t('terms.lastUpdate')}
+            </p>
+          </div>
+
+          <div className="bg-card/50 backdrop-blur-sm rounded-2xl p-8 md:p-12 border border-border/50 shadow-lg space-y-8">
+            <div className="prose prose-lg max-w-none">
+              <p className="text-foreground/90 leading-relaxed mb-8">
+                {t('terms.intro')}
+              </p>
+
+              <section className="mb-8">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                  {t('terms.section1Title')}
+                </h2>
+                <p className="text-foreground/80 leading-relaxed">
+                  {t('terms.section1Content')}
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                  {t('terms.section2Title')}
+                </h2>
+                <ul className="list-disc list-inside space-y-2 text-foreground/80">
+                  <li>{t('terms.section2Point1')}</li>
+                  <li>{t('terms.section2Point2')}</li>
+                  <li>{t('terms.section2Point3')}</li>
+                </ul>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                  {t('terms.section3Title')}
+                </h2>
+                <ul className="list-disc list-inside space-y-2 text-foreground/80">
+                  <li>{t('terms.section3Point1')}</li>
+                  <li>{t('terms.section3Point2')}</li>
+                  <li>{t('terms.section3Point3')}</li>
+                </ul>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                  {t('terms.section4Title')}
+                </h2>
+                <p className="text-foreground/80 leading-relaxed">
+                  {t('terms.section4Content')}
+                </p>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                  {t('terms.section5Title')}
+                </h2>
+                <ul className="list-disc list-inside space-y-2 text-foreground/80">
+                  <li>{t('terms.section5Point1')}</li>
+                  <li>{t('terms.section5Point2')}</li>
+                </ul>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                  {t('terms.section6Title')}
+                </h2>
+                <ul className="list-disc list-inside space-y-2 text-foreground/80">
+                  <li>{t('terms.section6Point1')}</li>
+                  <li>{t('terms.section6Point2')}</li>
+                </ul>
+              </section>
+
+              <section className="mb-8">
+                <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                  {t('terms.section7Title')}
+                </h2>
+                <div className="bg-secondary/30 rounded-lg p-6 space-y-2">
+                  <p className="text-foreground/90">
+                    📩 {t('terms.email')}
+                  </p>
+                  <p className="text-foreground/90">
+                    📍 {t('terms.address')}
+                  </p>
+                </div>
+              </section>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      <Footer />
+    </div>
+  );
+};
+
+export default Terms;
