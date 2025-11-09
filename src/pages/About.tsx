@@ -13,7 +13,7 @@ const About = () => {
       
       <main className="container mx-auto px-4 py-20">
         <div className="max-w-4xl mx-auto">
-          <h1 className="text-4xl md:text-5xl font-bold text-center mb-6 text-foreground">
+          <h1 className="text-4xl md:text-5xl font-bold text-center mb-6 text-foreground mt-12">
             {t('about.title')}
           </h1>
           <p className="text-xl text-center text-muted-foreground mb-16">
