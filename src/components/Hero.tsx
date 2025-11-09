@@ -46,14 +46,22 @@ const Hero = () => {
         <div className="flex justify-center mb-8">
           <img src={takazadeIcon} alt="Takazade Icon" className="w-24 h-24 md:w-32 md:h-32 animate-[float_3s_ease-in-out_infinite]" />
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">Yeteneklerini Paylaş,
-Fırsatları Yakala!!{t('hero.title').split(',')[0]}<span><span style={{
-            color: '#00D09C'
-          }}>{t('hero.title').includes('Pay') ? 'Pay' : 'Sh'}</span><span style={{
-            color: '#6C63FF'
-          }}>{t('hero.title').includes('laş') ? 'laş' : 'are'}</span></span>,
-          <br />
-          {t('hero.title').split(',')[1] || t('hero.title').split('!')[1]}!
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
+          {t('hero.title').includes('Paylaş') ? (
+            <>
+              Yeteneklerini <span style={{ color: '#00D09C' }}>Pay</span>
+              <span style={{ color: '#6C63FF' }}>laş</span>,
+              <br />
+              Fırsatları Yakala!!
+            </>
+          ) : (
+            <>
+              <span style={{ color: '#00D09C' }}>Sh</span>
+              <span style={{ color: '#6C63FF' }}>are</span> Your Talents,
+              <br />
+              Seize Opportunities!!
+            </>
+          )}
         </h1>
         <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
           {t('hero.subtitle')}
