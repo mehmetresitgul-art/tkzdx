@@ -60,6 +60,12 @@ export const talentSchema = z.object({
   category: z.enum(["yazilim", "tasarim", "muzik", "dil", "spor", "egitim", "diger"], {
     errorMap: () => ({ message: "Geçerli bir kategori seçin" }),
   }),
+  wanted_talent: z
+    .string()
+    .trim()
+    .max(200, { message: "Karşılığında istediğiniz 200 karakterden kısa olmalı" })
+    .optional()
+    .or(z.literal("")),
 });
 
 // Message validation schema

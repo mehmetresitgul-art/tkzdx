@@ -17,6 +17,7 @@ interface Talent {
   category: string;
   user_id: string;
   created_at: string;
+  wanted_talent?: string;
   profiles: {
     username: string;
     avatar_url: string;
@@ -199,7 +200,13 @@ const Discover = () => {
                   </div>
                   <Badge variant="secondary">{talent.category}</Badge>
                 </div>
-                <p className="text-muted-foreground mb-4 line-clamp-3">{talent.description}</p>
+                <p className="text-muted-foreground mb-3 line-clamp-3">{talent.description}</p>
+                {talent.wanted_talent && (
+                  <div className="mb-4 p-3 bg-muted/50 rounded-md">
+                    <p className="text-xs font-semibold text-muted-foreground mb-1">Karşılığında İstiyor:</p>
+                    <p className="text-sm">{talent.wanted_talent}</p>
+                  </div>
+                )}
                 <Button 
                   className="w-full" 
                   onClick={() => handleStartConversation(talent.user_id)}

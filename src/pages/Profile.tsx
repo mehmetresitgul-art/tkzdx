@@ -31,6 +31,7 @@ const Profile = () => {
   const [talentTitle, setTalentTitle] = useState("");
   const [talentDescription, setTalentDescription] = useState("");
   const [talentCategory, setTalentCategory] = useState("");
+  const [wantedTalent, setWantedTalent] = useState("");
 
   const navigate = useNavigate();
   const { toast } = useToast();
@@ -128,6 +129,7 @@ const Profile = () => {
       title: talentTitle,
       description: talentDescription,
       category: talentCategory,
+      wanted_talent: wantedTalent,
     });
 
     if (!validation.success) {
@@ -148,6 +150,7 @@ const Profile = () => {
         title: talentTitle,
         description: talentDescription,
         category: talentCategory,
+        wanted_talent: wantedTalent,
       });
 
     if (error) {
@@ -165,6 +168,7 @@ const Profile = () => {
       setTalentTitle("");
       setTalentDescription("");
       setTalentCategory("");
+      setWantedTalent("");
       fetchMyTalents(user.id);
     }
     setLoading(false);
@@ -320,6 +324,16 @@ const Profile = () => {
                           <SelectItem value="diger">Diğer</SelectItem>
                         </SelectContent>
                       </Select>
+                    </div>
+                    <div>
+                      <Label htmlFor="wantedTalent">Karşılığında Ne İstiyorsunuz?</Label>
+                      <Input
+                        id="wantedTalent"
+                        value={wantedTalent}
+                        onChange={(e) => setWantedTalent(e.target.value)}
+                        className="mt-1"
+                        placeholder="Örn: İngilizce konuşma pratiği"
+                      />
                     </div>
                     <Button onClick={handleAddTalent} disabled={loading} className="w-full">
                       Ekle
