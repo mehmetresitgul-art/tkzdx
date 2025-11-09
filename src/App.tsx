@@ -15,6 +15,7 @@ import Chat from "./pages/Chat";
 import Contact from "./pages/Contact";
 import About from "./pages/About";
 import Terms from "./pages/Terms";
+import Privacy from "./pages/Privacy";
 
 const queryClient = new QueryClient();
 
@@ -125,6 +126,19 @@ const AnimatedRoutes = () => {
               transition={{ duration: 0.3 }}
             >
               <Terms />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/gizlilik-politikasi"
+          element={
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <Privacy />
             </motion.div>
           }
         />
