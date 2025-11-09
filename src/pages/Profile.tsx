@@ -14,30 +14,33 @@ import Navbar from "@/components/Navbar";
 import { useToast } from "@/hooks/use-toast";
 import { LogOut, Plus, Trash2 } from "lucide-react";
 import { profileSchema, talentSchema } from "@/lib/validation";
-
 const Profile = () => {
   const [user, setUser] = useState<any>(null);
   const [profile, setProfile] = useState<any>(null);
   const [myTalents, setMyTalents] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [dialogOpen, setDialogOpen] = useState(false);
-  
+
   // Form states
   const [fullName, setFullName] = useState("");
   const [bio, setBio] = useState("");
   const [location, setLocation] = useState("");
-  
+
   // Talent form states
   const [talentTitle, setTalentTitle] = useState("");
   const [talentDescription, setTalentDescription] = useState("");
   const [talentCategory, setTalentCategory] = useState("");
   const [wantedTalent, setWantedTalent] = useState("");
-
   const navigate = useNavigate();
-  const { toast } = useToast();
-
+  const {
+    toast
+  } = useToast();
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
+    supabase.auth.getSession().then(({
+      data: {
+        session
+      }
+    }) => {
       if (!session) {
         navigate("/auth");
       } else {
@@ -47,14 +50,11 @@ const Profile = () => {
       }
     });
   }, [navigate]);
-
   const fetchProfile = async (userId: string) => {
-    const { data, error } = await supabase
-      .from("profiles")
-      .select("*")
-      .eq("id", userId)
-      .single();
-
+    const {
+      data,
+      error
+    } = await supabase.from("profiles").select("*").eq("id", userId).single();
     if (data) {
       setProfile(data);
       setFullName(data.full_name || "");
@@ -62,19 +62,17 @@ const Profile = () => {
       setLocation(data.location || "");
     }
   };
-
   const fetchMyTalents = async (userId: string) => {
-    const { data, error } = await supabase
-      .from("talents")
-      .select("*")
-      .eq("user_id", userId)
-      .order("created_at", { ascending: false });
-
+    const {
+      data,
+      error
+    } = await supabase.from("talents").select("*").eq("user_id", userId).order("created_at", {
+      ascending: false
+    });
     if (data) {
       setMyTalents(data);
     }
   };
-
   const handleUpdateProfile = async () => {
     setLoading(true);
 
@@ -82,45 +80,40 @@ const Profile = () => {
     const validation = profileSchema.safeParse({
       full_name: fullName,
       bio,
-      location,
+      location
     });
-
     if (!validation.success) {
       const firstError = validation.error.errors[0];
       toast({
         title: "Geçersiz Giriş",
         description: firstError.message,
-        variant: "destructive",
+        variant: "destructive"
       });
       setLoading(false);
       return;
     }
-
-    const { error } = await supabase
-      .from("profiles")
-      .update({
-        full_name: fullName,
-        bio,
-        location,
-      })
-      .eq("id", user.id);
-
+    const {
+      error
+    } = await supabase.from("profiles").update({
+      full_name: fullName,
+      bio,
+      location
+    }).eq("id", user.id);
     if (error) {
       toast({
         title: "Hata",
         description: error.message,
-        variant: "destructive",
+        variant: "destructive"
       });
     } else {
       toast({
         title: "Başarılı",
-        description: "Profiliniz güncellendi",
+        description: "Profiliniz güncellendi"
       });
       fetchProfile(user.id);
     }
     setLoading(false);
   };
-
   const handleAddTalent = async () => {
     setLoading(true);
 
@@ -129,40 +122,37 @@ const Profile = () => {
       title: talentTitle,
       description: talentDescription,
       category: talentCategory,
-      wanted_talent: wantedTalent,
+      wanted_talent: wantedTalent
     });
-
     if (!validation.success) {
       const firstError = validation.error.errors[0];
       toast({
         title: "Geçersiz Giriş",
         description: firstError.message,
-        variant: "destructive",
+        variant: "destructive"
       });
       setLoading(false);
       return;
     }
-
-    const { error } = await supabase
-      .from("talents")
-      .insert({
-        user_id: user.id,
-        title: talentTitle,
-        description: talentDescription,
-        category: talentCategory,
-        wanted_talent: wantedTalent,
-      });
-
+    const {
+      error
+    } = await supabase.from("talents").insert({
+      user_id: user.id,
+      title: talentTitle,
+      description: talentDescription,
+      category: talentCategory,
+      wanted_talent: wantedTalent
+    });
     if (error) {
       toast({
         title: "Hata",
         description: error.message,
-        variant: "destructive",
+        variant: "destructive"
       });
     } else {
       toast({
         title: "Başarılı",
-        description: "Yetenek eklendi",
+        description: "Yetenek eklendi"
       });
       setDialogOpen(false);
       setTalentTitle("");
@@ -173,35 +163,31 @@ const Profile = () => {
     }
     setLoading(false);
   };
-
   const handleDeleteTalent = async (talentId: string) => {
-    const { error } = await supabase
-      .from("talents")
-      .update({ status: "deleted" })
-      .eq("id", talentId);
-
+    const {
+      error
+    } = await supabase.from("talents").update({
+      status: "deleted"
+    }).eq("id", talentId);
     if (error) {
       toast({
         title: "Hata",
         description: error.message,
-        variant: "destructive",
+        variant: "destructive"
       });
     } else {
       toast({
         title: "Başarılı",
-        description: "Yetenek silindi",
+        description: "Yetenek silindi"
       });
       fetchMyTalents(user.id);
     }
   };
-
   const handleLogout = async () => {
     await supabase.auth.signOut();
     navigate("/auth");
   };
-
-  return (
-    <div className="min-h-screen bg-background">
+  return <div className="min-h-screen bg-background">
       <Navbar />
       
       <div className="container mx-auto px-4 pt-24 pb-12">
@@ -228,40 +214,19 @@ const Profile = () => {
               <CardContent className="space-y-4">
                 <div>
                   <Label htmlFor="username">Kullanıcı Adı</Label>
-                  <Input
-                    id="username"
-                    value={profile?.username || ""}
-                    disabled
-                    className="mt-1"
-                  />
+                  <Input id="username" value={profile?.username || ""} disabled className="mt-1" />
                 </div>
                 <div>
                   <Label htmlFor="fullName">Ad Soyad</Label>
-                  <Input
-                    id="fullName"
-                    value={fullName}
-                    onChange={(e) => setFullName(e.target.value)}
-                    className="mt-1"
-                  />
+                  <Input id="fullName" value={fullName} onChange={e => setFullName(e.target.value)} className="mt-1" />
                 </div>
                 <div>
                   <Label htmlFor="location">Konum</Label>
-                  <Input
-                    id="location"
-                    value={location}
-                    onChange={(e) => setLocation(e.target.value)}
-                    className="mt-1"
-                  />
+                  <Input id="location" value={location} onChange={e => setLocation(e.target.value)} className="mt-1" />
                 </div>
                 <div>
                   <Label htmlFor="bio">Hakkımda</Label>
-                  <Textarea
-                    id="bio"
-                    value={bio}
-                    onChange={(e) => setBio(e.target.value)}
-                    className="mt-1"
-                    rows={4}
-                  />
+                  <Textarea id="bio" value={bio} onChange={e => setBio(e.target.value)} className="mt-1" rows={4} />
                 </div>
                 <Button onClick={handleUpdateProfile} disabled={loading}>
                   Kaydet
@@ -290,24 +255,9 @@ const Profile = () => {
                   <div className="space-y-4">
                     <div>
                       <Label htmlFor="talentTitle">Başlık</Label>
-                      <Input
-                        id="talentTitle"
-                        value={talentTitle}
-                        onChange={(e) => setTalentTitle(e.target.value)}
-                        className="mt-1"
-                        placeholder="Örn: Web Tasarımı"
-                      />
+                      <Input id="talentTitle" value={talentTitle} onChange={e => setTalentTitle(e.target.value)} className="mt-1" placeholder="Örn: Web Tasarımı" />
                     </div>
-                    <div>
-                      <Label htmlFor="talentDescription">Açıklama</Label>
-                      <Textarea
-                        id="talentDescription"
-                        value={talentDescription}
-                        onChange={(e) => setTalentDescription(e.target.value)}
-                        className="mt-1"
-                        placeholder="Yeteneğiniz hakkında detaylı bilgi verin"
-                      />
-                    </div>
+                    
                     <div>
                       <Label htmlFor="talentCategory">Kategori</Label>
                       <Select value={talentCategory} onValueChange={setTalentCategory}>
@@ -327,13 +277,7 @@ const Profile = () => {
                     </div>
                     <div>
                       <Label htmlFor="wantedTalent">Karşılığında Ne İstiyorsunuz?</Label>
-                      <Input
-                        id="wantedTalent"
-                        value={wantedTalent}
-                        onChange={(e) => setWantedTalent(e.target.value)}
-                        className="mt-1"
-                        placeholder="Örn: İngilizce konuşma pratiği"
-                      />
+                      <Input id="wantedTalent" value={wantedTalent} onChange={e => setWantedTalent(e.target.value)} className="mt-1" placeholder="Örn: İngilizce konuşma pratiği" />
                     </div>
                     <Button onClick={handleAddTalent} disabled={loading} className="w-full">
                       Ekle
@@ -344,8 +288,7 @@ const Profile = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {myTalents.filter(t => t.status === 'active').map((talent) => (
-                <Card key={talent.id}>
+              {myTalents.filter(t => t.status === 'active').map(talent => <Card key={talent.id}>
                   <CardHeader>
                     <div className="flex justify-between items-start">
                       <CardTitle className="text-lg">{talent.title}</CardTitle>
@@ -354,30 +297,20 @@ const Profile = () => {
                     <CardDescription className="line-clamp-3">{talent.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button
-                      variant="destructive"
-                      size="sm"
-                      className="w-full"
-                      onClick={() => handleDeleteTalent(talent.id)}
-                    >
+                    <Button variant="destructive" size="sm" className="w-full" onClick={() => handleDeleteTalent(talent.id)}>
                       <Trash2 className="mr-2 h-4 w-4" />
                       Sil
                     </Button>
                   </CardContent>
-                </Card>
-              ))}
+                </Card>)}
             </div>
 
-            {myTalents.filter(t => t.status === 'active').length === 0 && (
-              <div className="text-center py-12">
+            {myTalents.filter(t => t.status === 'active').length === 0 && <div className="text-center py-12">
                 <p className="text-muted-foreground">Henüz yetenek eklenmemiş</p>
-              </div>
-            )}
+              </div>}
           </TabsContent>
         </Tabs>
       </div>
-    </div>
-  );
+    </div>;
 };
-
 export default Profile;
