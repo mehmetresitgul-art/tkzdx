@@ -6,7 +6,9 @@ import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 const Hero = () => {
-  const { t } = useTranslation();
+  const {
+    t
+  } = useTranslation();
   const navigate = useNavigate();
   const [session, setSession] = useState<any>(null);
   useEffect(() => {
@@ -44,8 +46,8 @@ const Hero = () => {
         <div className="flex justify-center mb-8">
           <img src={takazadeIcon} alt="Takazade Icon" className="w-24 h-24 md:w-32 md:h-32 animate-[float_3s_ease-in-out_infinite]" />
         </div>
-        <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
-          {t('hero.title').split(',')[0]}<span><span style={{
+        <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">Yeteneklerini Paylaş,
+Fırsatları Yakala!!{t('hero.title').split(',')[0]}<span><span style={{
             color: '#00D09C'
           }}>{t('hero.title').includes('Pay') ? 'Pay' : 'Sh'}</span><span style={{
             color: '#6C63FF'
