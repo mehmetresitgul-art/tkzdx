@@ -1,7 +1,7 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
-import { Users, Target, Heart, Leaf } from "lucide-react";
+import { Users, Target, Heart, Leaf, User } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const About = () => {
@@ -68,6 +68,16 @@ const About = () => {
               <h3 className="text-xl font-semibold mb-3 text-foreground">{t('about.sustainabilityTitle')}</h3>
               <p className="text-muted-foreground">
                 {t('about.sustainabilityDesc')}
+              </p>
+            </div>
+
+            <div className="bg-card rounded-lg p-6 border border-border md:col-span-2">
+              <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
+                <User className="w-6 h-6 text-secondary" />
+              </div>
+              <h3 className="text-xl font-semibold mb-3 text-foreground">{t('about.founderTitle')}</h3>
+              <p className="text-muted-foreground">
+                {t('about.founderDesc')}
               </p>
             </div>
           </section>
