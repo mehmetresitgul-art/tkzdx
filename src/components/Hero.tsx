@@ -52,14 +52,14 @@ const Hero = () => {
               Yeteneklerini <span style={{ color: '#00D09C' }}>Pay</span>
               <span style={{ color: '#6C63FF' }}>laş</span>,
               <br />
-              Fırsatları Yakala!!
+              Fırsatları Yakala!
             </>
           ) : (
             <>
               <span style={{ color: '#00D09C' }}>Sh</span>
               <span style={{ color: '#6C63FF' }}>are</span> Your Talents,
               <br />
-              Seize Opportunities!!
+              Seize Opportunities!
             </>
           )}
         </h1>
