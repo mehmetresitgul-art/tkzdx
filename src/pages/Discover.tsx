@@ -31,6 +31,17 @@ const Discover = () => {
   const {
     toast
   } = useToast();
+
+  const categoryLabels: Record<string, string> = {
+    'yazilim': 'Yazılım',
+    'tasarim': 'Tasarım',
+    'muzik': 'Müzik',
+    'dil': 'Dil',
+    'spor': 'Spor',
+    'egitim': 'Eğitim',
+    'diger': 'Diğer',
+    'all': 'Tüm Kategoriler'
+  };
   useEffect(() => {
     supabase.auth.getSession().then(({
       data: {
@@ -177,7 +188,9 @@ const Discover = () => {
                   <p className="text-xs font-semibold text-muted-foreground">
                     {talent.profiles?.username || 'Anonim Kullanıcı'}
                   </p>
-                  <Badge variant="secondary" className="text-xs">{talent.category}</Badge>
+                  <Badge variant="secondary" className="text-xs">
+                    {categoryLabels[talent.category] || talent.category}
+                  </Badge>
                 </div>
                 
                 <div className="bg-gradient-to-br from-primary/10 to-primary/5 p-4 rounded-lg mb-3 border border-primary/20">
