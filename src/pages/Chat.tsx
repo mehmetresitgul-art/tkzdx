@@ -261,6 +261,24 @@ const Chat = () => {
           ) : (
             <Card>
               <CardContent className="p-0 flex flex-col h-[calc(100vh-200px)]">
+                {/* Chat Header */}
+                <div className="p-4 border-b bg-card">
+                  <div className="flex items-center gap-3">
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage src={conversations.find(c => c.id === selectedConversation)?.profiles?.avatar_url} />
+                      <AvatarFallback>
+                        {conversations.find(c => c.id === selectedConversation)?.profiles?.username?.charAt(0).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                      <p className="font-semibold text-foreground">
+                        {conversations.find(c => c.id === selectedConversation)?.profiles?.username}
+                      </p>
+                      <p className="text-xs text-muted-foreground">Çevrimiçi</p>
+                    </div>
+                  </div>
+                </div>
+
                 <ScrollArea className="flex-1 p-4">
                   <div className="space-y-4">
                     {messages.map((message) => (
@@ -364,6 +382,24 @@ const Chat = () => {
           <Card className="md:col-span-2">
             {selectedConversation ? (
               <CardContent className="p-0 flex flex-col h-[600px]">
+                {/* Chat Header */}
+                <div className="p-4 border-b bg-card">
+                  <div className="flex items-center gap-3">
+                    <Avatar className="h-10 w-10">
+                      <AvatarImage src={conversations.find(c => c.id === selectedConversation)?.profiles?.avatar_url} />
+                      <AvatarFallback>
+                        {conversations.find(c => c.id === selectedConversation)?.profiles?.username?.charAt(0).toUpperCase()}
+                      </AvatarFallback>
+                    </Avatar>
+                    <div className="flex-1">
+                      <p className="font-semibold text-foreground">
+                        {conversations.find(c => c.id === selectedConversation)?.profiles?.username}
+                      </p>
+                      <p className="text-xs text-muted-foreground">Çevrimiçi</p>
+                    </div>
+                  </div>
+                </div>
+
                 <ScrollArea className="flex-1 p-6">
                   <div className="space-y-4">
                     {messages.map((message) => (
