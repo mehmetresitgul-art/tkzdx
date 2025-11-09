@@ -223,7 +223,7 @@ const Discover = () => {
                   disabled={talent.user_id === user?.id}
                 >
                   <MessageCircle className="mr-2 h-4 w-4" />
-                  {talent.user_id === user?.id ? "Kendi İlanın" : "💬 Takas Teklifi Yap"}
+                  {talent.user_id === user?.id ? "Kendi İlanın" : "Takas Teklifi Yap"}
                 </Button>
               </CardContent>
             </Card>
