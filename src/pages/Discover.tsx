@@ -104,12 +104,14 @@ const Discover = () => {
       data: existingConversation
     } = await supabase.from("conversations").select("id").eq("user1_id", user1_id).eq("user2_id", user2_id).maybeSingle();
     if (existingConversation) {
-      navigate("/mesajlar");
+      // Navigate directly to the conversation
+      navigate(`/mesajlar?conversationId=${existingConversation.id}`);
       return;
     }
 
     // Create new conversation with sorted IDs
     const {
+      data: newConversation,
       error
     } = await supabase.from("conversations").insert({
       user1_id,
@@ -121,8 +123,9 @@ const Discover = () => {
         description: "Konuşma başlatılamadı",
         variant: "destructive"
       });
-    } else {
-      navigate("/mesajlar");
+    } else if (newConversation) {
+      // Navigate directly to the new conversation
+      navigate(`/mesajlar?conversationId=${newConversation.id}`);
     }
   };
   const filteredTalents = talents.filter(talent => talent.title.toLowerCase().includes(search.toLowerCase()) || talent.description?.toLowerCase().includes(search.toLowerCase()));
@@ -137,7 +140,7 @@ const Discover = () => {
           </div>
           <Button 
             onClick={() => navigate("/profil")} 
-            className="hidden md:flex bg-primary hover:bg-primary/90 text-base h-11 touch-manipulation active:scale-95"
+            className="hidden md:flex bg-primary hover:bg-primary/90 text-base h-11"
           >
             <Plus className="mr-2 h-5 w-5" />
             Kendi Takasını Başlat
@@ -151,7 +154,7 @@ const Discover = () => {
           </div>
           
           <Select value={category} onValueChange={setCategory}>
-            <SelectTrigger className="w-full md:w-[220px] touch-manipulation">
+            <SelectTrigger className="w-full md:w-[220px]">
               <SelectValue placeholder="Kategori Seç" />
             </SelectTrigger>
             <SelectContent className="bg-background z-50" position="popper" sideOffset={5}>
@@ -168,7 +171,7 @@ const Discover = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredTalents.map(talent => <Card key={talent.id} className="hover:shadow-lg transition-all md:hover:scale-[1.02] border-2 hover:border-primary/30 touch-manipulation">
+          {filteredTalents.map(talent => <Card key={talent.id} className="hover:shadow-lg transition-all duration-300 ease-in-out md:hover:scale-[1.02] border-2 hover:border-primary/30 touch-manipulation">
               <CardContent className="p-6">
                 <div className="flex items-start justify-between mb-3">
                   <p className="text-xs font-semibold text-muted-foreground">
@@ -189,7 +192,7 @@ const Discover = () => {
                   </div>}
                 
                 <Button 
-                  className="w-full touch-manipulation active:scale-95" 
+                  className="w-full" 
                   onClick={() => handleStartConversation(talent.user_id)} 
                   disabled={talent.user_id === user?.id}
                 >
@@ -203,7 +206,7 @@ const Discover = () => {
         {filteredTalents.length === 0 && <div className="text-center py-16 px-4">
             <p className="text-xl font-semibold text-foreground mb-2">Henüz bir takas ilanı yok!</p>
             <p className="text-muted-foreground mb-6">Sen ilk takas ilanını oluşturan kişi ol!</p>
-            <Button onClick={() => navigate("/profil")} size="lg" className="text-base">
+            <Button onClick={() => navigate("/profil")} size="lg">
               <Plus className="mr-2 h-5 w-5" />
               İlk Takası Başlat
             </Button>
@@ -213,7 +216,7 @@ const Discover = () => {
       {/* Floating Action Button for Mobile */}
       <Button 
         onClick={() => navigate("/profil")} 
-        className="md:hidden fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-2xl bg-primary hover:bg-primary/90 z-40 active:scale-95 touch-manipulation transition-transform" 
+        className="md:hidden fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-2xl bg-primary hover:bg-primary/90 z-40" 
         size="icon"
       >
         <div className="flex flex-col items-center">

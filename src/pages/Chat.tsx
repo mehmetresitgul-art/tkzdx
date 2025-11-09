@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useSearchParams } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -37,6 +37,7 @@ const Chat = () => {
   const [messages, setMessages] = useState<Message[]>([]);
   const [newMessage, setNewMessage] = useState("");
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { toast } = useToast();
 
   useEffect(() => {
@@ -126,6 +127,22 @@ const Chat = () => {
       });
 
       setConversations(conversationsWithProfiles);
+
+      // Auto-select conversation from URL parameters
+      const conversationId = searchParams.get("conversationId");
+      const targetUserId = searchParams.get("userId");
+      
+      if (conversationId) {
+        setSelectedConversation(conversationId);
+      } else if (targetUserId) {
+        // Find conversation with this user
+        const targetConversation = conversationsWithProfiles.find(
+          conv => conv.user1_id === targetUserId || conv.user2_id === targetUserId
+        );
+        if (targetConversation) {
+          setSelectedConversation(targetConversation.id);
+        }
+      }
     }
   };
 
