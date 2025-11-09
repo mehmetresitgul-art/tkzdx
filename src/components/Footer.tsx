@@ -15,7 +15,7 @@ Sürdürülebilir bir gelecek için birlikte.</p>
             <ul className="space-y-2 text-sm">
               <li><a href="/hakkimizda" className="text-muted-foreground hover:text-primary transition-smooth">Hakkımızda</a></li>
               <li><a href="#nasil-calisir" className="text-muted-foreground hover:text-primary transition-smooth">Nasıl Çalışır</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-smooth">Blog</a></li>
+              
               <li><a href="/iletisim" className="text-muted-foreground hover:text-primary transition-smooth">İletişim</a></li>
             </ul>
           </div>
