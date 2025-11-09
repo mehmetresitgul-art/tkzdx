@@ -200,9 +200,123 @@ const Chat = () => {
       <Navbar />
       
       <div className="container mx-auto px-4 pt-24 pb-12">
-        <h1 className="text-4xl font-bold text-foreground mb-8">Mesajlar</h1>
+        <div className="flex items-center justify-between mb-8">
+          <h1 className="text-4xl font-bold text-foreground">Mesajlar</h1>
+          {selectedConversation && (
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => setSelectedConversation(null)}
+              className="md:hidden"
+            >
+              Geri
+            </Button>
+          )}
+        </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 h-[600px]">
+        {/* Mobile Layout */}
+        <div className="md:hidden">
+          {!selectedConversation ? (
+            <Card>
+              <CardContent className="p-0">
+                <ScrollArea className="h-[calc(100vh-200px)]">
+                  {conversations.length === 0 ? (
+                    <div className="p-6 text-center text-muted-foreground">
+                      Henüz konuşma yok
+                    </div>
+                  ) : (
+                    conversations.map((conv) => (
+                      <div
+                        key={conv.id}
+                        onClick={() => setSelectedConversation(conv.id)}
+                        className="p-4 border-b cursor-pointer hover:bg-accent transition-all duration-200 active:bg-accent/80 touch-manipulation"
+                      >
+                        <div className="flex items-center gap-3">
+                          <Avatar>
+                            <AvatarImage src={conv.profiles?.avatar_url} />
+                            <AvatarFallback>
+                              {conv.profiles?.username?.charAt(0).toUpperCase()}
+                            </AvatarFallback>
+                          </Avatar>
+                          <div className="flex-1">
+                            <div className="flex items-center justify-between">
+                              <p className="font-semibold">{conv.profiles?.username}</p>
+                              {conv.unread_count && conv.unread_count > 0 && (
+                                <Badge variant="default" className="ml-2">
+                                  {conv.unread_count}
+                                </Badge>
+                              )}
+                            </div>
+                            <p className="text-sm text-muted-foreground">
+                              Son mesaj
+                            </p>
+                          </div>
+                        </div>
+                      </div>
+                    ))
+                  )}
+                </ScrollArea>
+              </CardContent>
+            </Card>
+          ) : (
+            <Card>
+              <CardContent className="p-0 flex flex-col h-[calc(100vh-200px)]">
+                <ScrollArea className="flex-1 p-4">
+                  <div className="space-y-4">
+                    {messages.map((message) => (
+                      <div
+                        key={message.id}
+                        className={`flex ${
+                          message.sender_id === user?.id
+                            ? "justify-end"
+                            : "justify-start"
+                        }`}
+                      >
+                        <div
+                          className={`max-w-[75%] rounded-lg p-3 transition-all duration-200 ${
+                            message.sender_id === user?.id
+                              ? "bg-primary text-primary-foreground"
+                              : "bg-muted"
+                          }`}
+                        >
+                          <p>{message.content}</p>
+                          <p className="text-xs mt-1 opacity-70">
+                            {new Date(message.created_at).toLocaleTimeString("tr-TR", {
+                              hour: "2-digit",
+                              minute: "2-digit",
+                            })}
+                          </p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </ScrollArea>
+
+                <div className="p-4 border-t bg-background">
+                  <div className="flex gap-2">
+                    <Input
+                      value={newMessage}
+                      onChange={(e) => setNewMessage(e.target.value)}
+                      placeholder="Mesajınızı yazın..."
+                      className="transition-all duration-200"
+                      onKeyPress={(e) => {
+                        if (e.key === "Enter") {
+                          handleSendMessage();
+                        }
+                      }}
+                    />
+                    <Button onClick={handleSendMessage}>
+                      <Send className="h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          )}
+        </div>
+
+        {/* Desktop Layout */}
+        <div className="hidden md:grid md:grid-cols-3 gap-6 h-[600px]">
           <Card className="md:col-span-1">
             <CardContent className="p-0">
               <ScrollArea className="h-[600px]">
@@ -215,7 +329,7 @@ const Chat = () => {
                     <div
                       key={conv.id}
                       onClick={() => setSelectedConversation(conv.id)}
-                      className={`p-4 border-b cursor-pointer hover:bg-accent transition-colors touch-manipulation active:scale-[0.98] ${
+                      className={`p-4 border-b cursor-pointer hover:bg-accent transition-all duration-200 ${
                         selectedConversation === conv.id ? "bg-accent" : ""
                       }`}
                     >
@@ -262,7 +376,7 @@ const Chat = () => {
                         }`}
                       >
                         <div
-                          className={`max-w-[70%] rounded-lg p-3 ${
+                          className={`max-w-[70%] rounded-lg p-3 transition-all duration-200 ${
                             message.sender_id === user?.id
                               ? "bg-primary text-primary-foreground"
                               : "bg-muted"
@@ -287,13 +401,14 @@ const Chat = () => {
                       value={newMessage}
                       onChange={(e) => setNewMessage(e.target.value)}
                       placeholder="Mesajınızı yazın..."
+                      className="transition-all duration-200"
                       onKeyPress={(e) => {
                         if (e.key === "Enter") {
                           handleSendMessage();
                         }
                       }}
                     />
-                    <Button onClick={handleSendMessage} className="touch-manipulation active:scale-95">
+                    <Button onClick={handleSendMessage}>
                       <Send className="h-4 w-4" />
                     </Button>
                   </div>
