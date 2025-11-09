@@ -11,6 +11,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Send } from "lucide-react";
 import { messageSchema } from "@/lib/validation";
 import { Badge } from "@/components/ui/badge";
+import { formatLastSeen } from "@/lib/dateUtils";
 
 interface Message {
   id: string;
@@ -26,6 +27,7 @@ interface Conversation {
   profiles: {
     username: string;
     avatar_url: string;
+    last_seen: string | null;
   };
   unread_count?: number;
 }
@@ -47,9 +49,19 @@ const Chat = () => {
       } else {
         setUser(session.user);
         fetchConversations(session.user.id);
+        // Update last_seen when user opens chat
+        updateLastSeen();
       }
     });
   }, [navigate]);
+
+  const updateLastSeen = async () => {
+    try {
+      await supabase.rpc("update_last_seen");
+    } catch (error) {
+      console.error("Error updating last_seen:", error);
+    }
+  };
 
   useEffect(() => {
     if (selectedConversation) {
@@ -93,7 +105,7 @@ const Chat = () => {
       // Fetch all profiles in one query
       const { data: profiles } = await supabase
         .from("profiles")
-        .select("id, username, avatar_url")
+        .select("id, username, avatar_url, last_seen")
         .in("id", userIds);
 
       // Map profiles to conversations
@@ -121,7 +133,7 @@ const Chat = () => {
         
         return {
           ...conv,
-          profiles: profile || { username: "Kullanıcı", avatar_url: "" },
+          profiles: profile || { username: "Kullanıcı", avatar_url: "", last_seen: null },
           unread_count: unreadMap.get(conv.id) || 0
         };
       });
@@ -192,6 +204,8 @@ const Chat = () => {
       });
     } else {
       setNewMessage("");
+      // Update last_seen after sending message
+      updateLastSeen();
     }
   };
 
@@ -274,7 +288,9 @@ const Chat = () => {
                       <p className="font-semibold text-foreground">
                         {conversations.find(c => c.id === selectedConversation)?.profiles?.username}
                       </p>
-                      <p className="text-xs text-muted-foreground">Çevrimiçi</p>
+                      <p className="text-xs text-muted-foreground">
+                        {formatLastSeen(conversations.find(c => c.id === selectedConversation)?.profiles?.last_seen || null)}
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -395,7 +411,9 @@ const Chat = () => {
                       <p className="font-semibold text-foreground">
                         {conversations.find(c => c.id === selectedConversation)?.profiles?.username}
                       </p>
-                      <p className="text-xs text-muted-foreground">Çevrimiçi</p>
+                      <p className="text-xs text-muted-foreground">
+                        {formatLastSeen(conversations.find(c => c.id === selectedConversation)?.profiles?.last_seen || null)}
+                      </p>
                     </div>
                   </div>
                 </div>

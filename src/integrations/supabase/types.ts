@@ -104,6 +104,7 @@ export type Database = {
           created_at: string
           full_name: string | null
           id: string
+          last_seen: string | null
           location: string | null
           updated_at: string
           username: string
@@ -114,6 +115,7 @@ export type Database = {
           created_at?: string
           full_name?: string | null
           id: string
+          last_seen?: string | null
           location?: string | null
           updated_at?: string
           username: string
@@ -124,6 +126,7 @@ export type Database = {
           created_at?: string
           full_name?: string | null
           id?: string
+          last_seen?: string | null
           location?: string | null
           updated_at?: string
           username?: string
@@ -171,7 +174,7 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
-      [_ in never]: never
+      update_last_seen: { Args: never; Returns: undefined }
     }
     Enums: {
       [_ in never]: never
