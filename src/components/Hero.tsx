@@ -49,7 +49,7 @@ const Hero = () => {
         <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
           {t('hero.title').includes('Paylaş') ? (
             <>
-              yeteneklerini <span style={{ color: '#00D09C' }}>Pay</span>
+              Yeteneklerini <span style={{ color: '#00D09C' }}>Pay</span>
               <span style={{ color: '#6C63FF' }}>laş</span>,
               <br />
               Fırsatları Yakala!!
