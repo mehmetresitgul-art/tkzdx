@@ -71,7 +71,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="bg-card rounded-lg p-6 border border-border md:col-span-2">
+            <div className="bg-card rounded-lg p-6 border border-border md:col-span-2 flex flex-col items-center text-center">
               <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
                 <User className="w-6 h-6 text-secondary" />
               </div>
