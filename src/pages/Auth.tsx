@@ -8,8 +8,10 @@ import { useToast } from "@/hooks/use-toast";
 import logo from "@/assets/takazade-logo.png";
 import { authSchema } from "@/lib/validation";
 import type { Session } from "@supabase/supabase-js";
+import { useTranslation } from "react-i18next";
 
 const Auth = () => {
+  const { t } = useTranslation();
   const [isLogin, setIsLogin] = useState(true);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -57,7 +59,7 @@ const Auth = () => {
       if (!validation.success) {
         const firstError = validation.error.errors[0];
         toast({
-          title: "Geçersiz Giriş",
+          title: t('auth.invalidInput'),
           description: firstError.message,
           variant: "destructive",
         });
@@ -74,8 +76,8 @@ const Auth = () => {
         if (error) throw error;
 
         toast({
-          title: "Giriş başarılı!",
-          description: "Hoş geldiniz.",
+          title: t('auth.loginSuccess'),
+          description: t('auth.loginSuccessDesc'),
         });
         navigate("/kesfet");
       } else {
@@ -93,14 +95,14 @@ const Auth = () => {
         if (error) throw error;
 
         toast({
-          title: "Kayıt başarılı!",
-          description: "Hesabınız oluşturuldu.",
+          title: t('auth.signupSuccess'),
+          description: t('auth.signupSuccessDesc'),
         });
         navigate("/kesfet");
       }
     } catch (error: any) {
       toast({
-        title: "Hata",
+        title: t('auth.error'),
         description: error.message,
         variant: "destructive",
       });
@@ -116,12 +118,12 @@ const Auth = () => {
         <div className="text-center">
           <img src={logo} alt="Takazade" className="h-12 mx-auto mb-4" />
           <h2 className="text-3xl font-bold text-foreground">
-            {isLogin ? "Giriş Yap" : "Üye Ol"}
+            {isLogin ? t('auth.login') : t('auth.signup')}
           </h2>
           <p className="mt-2 text-muted-foreground">
             {isLogin
-              ? "Hesabınıza giriş yapın"
-              : "Yeni hesap oluşturun"}
+              ? t('auth.loginSubtitle')
+              : t('auth.signupSubtitle')}
           </p>
         </div>
 
@@ -129,7 +131,7 @@ const Auth = () => {
           <form onSubmit={handleAuth} className="space-y-6">
             {!isLogin && (
               <div>
-                <Label htmlFor="username">Kullanıcı Adı</Label>
+                <Label htmlFor="username">{t('auth.username')}</Label>
                 <Input
                   id="username"
                   type="text"
@@ -142,7 +144,7 @@ const Auth = () => {
             )}
 
             <div>
-              <Label htmlFor="email">E-posta</Label>
+              <Label htmlFor="email">{t('auth.email')}</Label>
               <Input
                 id="email"
                 type="email"
@@ -154,7 +156,7 @@ const Auth = () => {
             </div>
 
             <div>
-              <Label htmlFor="password">Şifre</Label>
+              <Label htmlFor="password">{t('auth.password')}</Label>
               <Input
                 id="password"
                 type="password"
@@ -170,17 +172,17 @@ const Auth = () => {
               className="w-full bg-primary hover:bg-primary/90 touch-manipulation active:scale-95"
               disabled={loading}
             >
-              {loading ? "Yükleniyor..." : isLogin ? "Giriş Yap" : "Üye Ol"}
+              {loading ? t('auth.loading') : isLogin ? t('auth.login') : t('auth.signup')}
             </Button>
 
             <p className="text-center text-sm text-muted-foreground">
-              {isLogin ? "Hesabınız yok mu?" : "Zaten hesabınız var mı?"}{" "}
+              {isLogin ? t('auth.noAccount') : t('auth.hasAccount')}{" "}
               <button
                 type="button"
                 onClick={() => setIsLogin(!isLogin)}
                 className="text-primary hover:underline"
               >
-                {isLogin ? "Üye Ol" : "Giriş Yap"}
+                {isLogin ? t('auth.signup') : t('auth.login')}
               </button>
             </p>
           </form>

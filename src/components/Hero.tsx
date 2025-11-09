@@ -4,7 +4,9 @@ import takazadeIcon from "@/assets/takazade-icon.png";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "@/integrations/supabase/client";
 import { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 const Hero = () => {
+  const { t } = useTranslation();
   const navigate = useNavigate();
   const [session, setSession] = useState<any>(null);
   useEffect(() => {
@@ -43,24 +45,24 @@ const Hero = () => {
           <img src={takazadeIcon} alt="Takazade Icon" className="w-24 h-24 md:w-32 md:h-32 animate-[float_3s_ease-in-out_infinite]" />
         </div>
         <h1 className="text-5xl md:text-7xl font-bold mb-6 text-foreground">
-          Yeteneklerini <span><span style={{
+          {t('hero.title').split(',')[0]}<span><span style={{
             color: '#00D09C'
-          }}>Pay</span><span style={{
+          }}>{t('hero.title').includes('Pay') ? 'Pay' : 'Sh'}</span><span style={{
             color: '#6C63FF'
-          }}>laş</span></span>,
+          }}>{t('hero.title').includes('laş') ? 'laş' : 'are'}</span></span>,
           <br />
-          Fırsatları Yakala!
+          {t('hero.title').split(',')[1] || t('hero.title').split('!')[1]}!
         </h1>
         <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-3xl mx-auto">
-          Yeteneklerini başkalarıyla takas et. Takazade ile yeni beceriler öğren, deneyimlerini paylaş.
+          {t('hero.subtitle')}
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto px-4">
           <Button size="xl" onClick={handleGetStarted} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-secondary border-2 border-purple w-full sm:w-auto touch-manipulation active:scale-95">
-            Hemen Başla
+            {t('hero.getStarted')}
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
           <Button size="xl" variant="outline" className="border-2 border-[#6C63FF] w-full sm:w-auto touch-manipulation active:scale-95" onClick={handleHowItWorks}>
-            Nasıl Çalışır?
+            {t('hero.howItWorks')}
           </Button>
         </div>
       </div>

@@ -1,32 +1,35 @@
 import { Users, Heart, TrendingUp } from "lucide-react";
-
-const stats = [
-  {
-    icon: Users,
-    value: "10.000+",
-    label: "Aktif Kullanıcı",
-  },
-  {
-    icon: Heart,
-    value: "50.000+",
-    label: "Başarılı Takas",
-  },
-  {
-    icon: TrendingUp,
-    value: "100.000+",
-    label: "Mutlu Anlar",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const Community = () => {
+  const { t } = useTranslation();
+  
+  const stats = [
+    {
+      icon: Users,
+      value: "10.000+",
+      label: t('community.activeUsers'),
+    },
+    {
+      icon: Heart,
+      value: "50.000+",
+      label: t('community.successfulSwaps'),
+    },
+    {
+      icon: TrendingUp,
+      value: "100.000+",
+      label: t('community.happyMoments'),
+    },
+  ];
+
   return (
     <section id="topluluk" className="py-20 px-4">
       <div className="container mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-foreground">
-          Büyüyen Topluluğumuz
+          {t('community.title')}
         </h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Binlerce kullanıcı Takazade ile değerli deneyimler yaşıyor
+          {t('community.subtitle')}
         </p>
         
         <div className="grid md:grid-cols-3 gap-8 max-w-4xl mx-auto">

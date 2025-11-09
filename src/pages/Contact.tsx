@@ -9,7 +9,9 @@ import { useToast } from "@/hooks/use-toast";
 import { supabase } from "@/integrations/supabase/client";
 import { Mail, MessageSquare, Send, MapPin } from "lucide-react";
 import { contactSchema } from "@/lib/validation";
+import { useTranslation } from "react-i18next";
 const Contact = () => {
+  const { t } = useTranslation();
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
@@ -30,7 +32,7 @@ const Contact = () => {
     if (!validation.success) {
       const firstError = validation.error.errors[0];
       toast({
-        title: "Hata",
+        title: t('contact.errorTitle'),
         description: firstError.message,
         variant: "destructive"
       });
@@ -47,8 +49,8 @@ const Contact = () => {
       }]);
       if (error) throw error;
       toast({
-        title: "Başarılı!",
-        description: "Mesajınız başarıyla gönderildi. En kısa sürede size dönüş yapacağız."
+        title: t('contact.successTitle'),
+        description: t('contact.successMessage')
       });
       setName("");
       setEmail("");
@@ -56,8 +58,8 @@ const Contact = () => {
     } catch (error) {
       console.error("Error sending message:", error);
       toast({
-        title: "Hata",
-        description: "Mesaj gönderilirken bir hata oluştu. Lütfen tekrar deneyin.",
+        title: t('contact.errorTitle'),
+        description: t('contact.errorMessage'),
         variant: "destructive"
       });
     } finally {
@@ -71,17 +73,17 @@ const Contact = () => {
         <div className="container mx-auto max-w-4xl">
           <div className="text-center mb-12">
             <h1 className="text-4xl md:text-5xl font-bold mb-4 text-foreground">
-              İletişime Geçin
+              {t('contact.title')}
             </h1>
             <p className="text-lg text-muted-foreground">
-              Sorularınız, önerileriniz veya geri bildirimleriniz için bizimle iletişime geçebilirsiniz.
+              {t('contact.subtitle')}
             </p>
           </div>
 
           <div className="grid md:grid-cols-3 gap-8 mb-12">
             <div className="bg-card p-8 rounded-lg border border-border hover:shadow-lg transition-smooth">
               <Mail className="w-12 h-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-2 text-foreground">E-posta</h3>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">{t('contact.email')}</h3>
               <a href="mailto:takazade.com@gmail.com" className="text-muted-foreground hover:text-primary transition-smooth">
                 takazade.com@gmail.com
               </a>
@@ -89,7 +91,7 @@ const Contact = () => {
 
             <div className="bg-card p-8 rounded-lg border border-border hover:shadow-lg transition-smooth">
               <MapPin className="w-12 h-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-2 text-foreground">Adres</h3>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">{t('contact.address')}</h3>
               <p className="text-muted-foreground text-sm">
                 1330 Avenue of the Americas, 23rd Floor<br />
                 New York
@@ -98,42 +100,42 @@ const Contact = () => {
 
             <div className="bg-card p-8 rounded-lg border border-border hover:shadow-lg transition-smooth">
               <MessageSquare className="w-12 h-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-2 text-foreground">Sosyal Medya</h3>
-              <p className="text-muted-foreground">Sosyal medya hesaplarımızdan bize ulaşabilirsiniz.</p>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">{t('contact.socialMedia')}</h3>
+              <p className="text-muted-foreground">{t('contact.socialMediaDesc')}</p>
             </div>
           </div>
 
           <div className="bg-card p-8 rounded-lg border border-border">
             <h2 className="text-2xl font-bold mb-6 text-foreground">
-              Mesaj Gönderin
+              {t('contact.sendMessage')}
             </h2>
             
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium mb-2 text-foreground">
-                  Adınız Soyadınız
+                  {t('contact.name')}
                 </label>
-                <Input id="name" type="text" value={name} onChange={e => setName(e.target.value)} placeholder="Adınızı ve soyadınızı girin" className="w-full" required />
+                <Input id="name" type="text" value={name} onChange={e => setName(e.target.value)} placeholder={t('contact.namePlaceholder')} className="w-full" required />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-medium mb-2 text-foreground">
-                  E-posta Adresiniz
+                  {t('contact.emailAddress')}
                 </label>
-                <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder="ornek@email.com" className="w-full" required />
+                <Input id="email" type="email" value={email} onChange={e => setEmail(e.target.value)} placeholder={t('contact.emailPlaceholder')} className="w-full" required />
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-medium mb-2 text-foreground">
-                  Mesajınız
+                  {t('contact.message')}
                 </label>
-                <Textarea id="message" value={message} onChange={e => setMessage(e.target.value)} placeholder="Mesajınızı buraya yazın..." className="w-full min-h-[150px]" required />
+                <Textarea id="message" value={message} onChange={e => setMessage(e.target.value)} placeholder={t('contact.messagePlaceholder')} className="w-full min-h-[150px]" required />
               </div>
 
               <Button type="submit" disabled={isSubmitting} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground touch-manipulation active:scale-95">
-                {isSubmitting ? "Gönderiliyor..." : <>
+                {isSubmitting ? t('contact.sending') : <>
                     <Send className="w-4 h-4 mr-2" />
-                    Mesajı Gönder
+                    {t('contact.send')}
                   </>}
               </Button>
             </form>

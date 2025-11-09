@@ -1,33 +1,36 @@
 import { Upload, Search, Repeat } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
-
-const steps = [
-  {
-    icon: Upload,
-    title: "Yeteneğini Paylaş",
-    description: "Paylaşmak istediğin yeteneğini ekle ve detaylarını gir.",
-  },
-  {
-    icon: Search,
-    title: "Keşfet",
-    description: "Öğrenmek istediğin yeteneğe sahip kişileri bul.",
-  },
-  {
-    icon: Repeat,
-    title: "İletişime Geç",
-    description: "Mesajlaş, anlaş ve yetenek takasını gerçekleştir!",
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const HowItWorks = () => {
+  const { t } = useTranslation();
+  
+  const steps = [
+    {
+      icon: Upload,
+      title: t('howItWorks.step1Title'),
+      description: t('howItWorks.step1Desc'),
+    },
+    {
+      icon: Search,
+      title: t('howItWorks.step2Title'),
+      description: t('howItWorks.step2Desc'),
+    },
+    {
+      icon: Repeat,
+      title: t('howItWorks.step3Title'),
+      description: t('howItWorks.step3Desc'),
+    },
+  ];
+
   return (
     <section id="how-it-works" className="py-20 px-4 bg-muted/30">
       <div className="container mx-auto">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4 text-foreground">
-          Nasıl Çalışır?
+          {t('howItWorks.title')}
         </h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Üç basit adımda takasa başla
+          {t('howItWorks.subtitle')}
         </p>
         
         <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">

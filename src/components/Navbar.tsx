@@ -5,7 +5,10 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import logo from "@/assets/takazade-logo.png";
+import { useTranslation } from "react-i18next";
+import LanguageSwitcher from "./LanguageSwitcher";
 const Navbar = () => {
+  const { t } = useTranslation();
   const [user, setUser] = useState<any>(null);
   const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
@@ -35,19 +38,19 @@ const Navbar = () => {
           
           {user ? <div className="hidden md:flex items-center gap-8">
               <Link to="/" className="text-foreground hover:text-primary transition-smooth">
-                Ana Sayfa
+                {t('nav.home')}
               </Link>
               <Link to="/kesfet" className="text-foreground hover:text-primary transition-smooth">
-                Keşfet
+                {t('nav.discover')}
               </Link>
               <Link to="/profil" className="text-foreground hover:text-primary transition-smooth">
-                Profilim
+                {t('nav.profile')}
               </Link>
               <Link to="/mesajlar" className="text-foreground hover:text-primary transition-smooth">
-                Mesajlar
+                {t('nav.messages')}
               </Link>
               <Link to="/iletisim" className="text-foreground hover:text-primary transition-smooth">
-                İletişim
+                {t('nav.contact')}
               </Link>
             </div> : <div className="hidden md:flex items-center gap-8">
               
@@ -57,6 +60,7 @@ const Navbar = () => {
             </div>}
 
           <div className="flex items-center gap-4">
+            <LanguageSwitcher />
             <Sheet open={isOpen} onOpenChange={setIsOpen}>
               <SheetTrigger asChild className="md:hidden">
                 <Button variant="ghost" size="icon" className="touch-manipulation">
@@ -73,35 +77,35 @@ const Navbar = () => {
                             className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-3 px-4 text-base rounded-lg active:bg-accent touch-manipulation font-medium" 
                             onClick={() => setIsOpen(false)}
                           >
-                            Ana Sayfa
+                            {t('nav.home')}
                           </Link>
                           <Link 
                             to="/kesfet" 
                             className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-3 px-4 text-base rounded-lg active:bg-accent touch-manipulation font-medium" 
                             onClick={() => setIsOpen(false)}
                           >
-                            Keşfet
+                            {t('nav.discover')}
                           </Link>
                           <Link 
                             to="/profil" 
                             className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-3 px-4 text-base rounded-lg active:bg-accent touch-manipulation font-medium" 
                             onClick={() => setIsOpen(false)}
                           >
-                            Profilim
+                            {t('nav.profile')}
                           </Link>
                           <Link 
                             to="/mesajlar" 
                             className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-3 px-4 text-base rounded-lg active:bg-accent touch-manipulation font-medium" 
                             onClick={() => setIsOpen(false)}
                           >
-                            Mesajlar
+                            {t('nav.messages')}
                           </Link>
                           <Link 
                             to="/iletisim" 
                             className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-3 px-4 text-base rounded-lg active:bg-accent touch-manipulation font-medium" 
                             onClick={() => setIsOpen(false)}
                           >
-                            İletişim
+                            {t('nav.contact')}
                           </Link>
                         </> : null}
                     </nav>
@@ -117,7 +121,7 @@ const Navbar = () => {
                           }} 
                           className="bg-primary hover:bg-primary/90 w-full min-h-[48px] touch-manipulation active:scale-95 font-semibold"
                         >
-                          Hesabım
+                          {t('nav.myAccount')}
                         </Button>
                       ) : (
                         <>
@@ -130,7 +134,7 @@ const Navbar = () => {
                             }} 
                             className="w-full min-h-[48px] touch-manipulation active:scale-95 font-semibold border-2"
                           >
-                            Giriş Yap
+                            {t('nav.login')}
                           </Button>
                           <Button 
                             size="lg" 
@@ -140,7 +144,7 @@ const Navbar = () => {
                             }} 
                             className="bg-primary hover:bg-primary/90 w-full min-h-[48px] touch-manipulation active:scale-95 font-semibold"
                           >
-                            Üye Ol
+                            {t('nav.signup')}
                           </Button>
                         </>
                       )}
@@ -151,13 +155,13 @@ const Navbar = () => {
             </Sheet>
             
             {user ? <Button onClick={() => navigate("/profil")} className="bg-primary hover:bg-primary/90 hidden md:inline-flex touch-manipulation active:scale-95">
-                Hesabım
+                {t('nav.myAccount')}
               </Button> : <>
                 <Button variant="ghost" onClick={() => navigate("/auth")} className="hidden md:inline-flex touch-manipulation active:scale-95">
-                  Giriş Yap
+                  {t('nav.login')}
                 </Button>
                 <Button onClick={() => navigate("/auth")} className="bg-primary hover:bg-primary/90 hidden md:inline-flex touch-manipulation active:scale-95">
-                  Üye Ol
+                  {t('nav.signup')}
                 </Button>
               </>}
           </div>
