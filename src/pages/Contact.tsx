@@ -20,14 +20,13 @@ const Contact = () => {
   const navigate = useNavigate();
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     // Validate inputs using Zod schema
     const validation = contactSchema.safeParse({
       name: name.trim(),
       email: email.trim(),
-      message: message.trim(),
+      message: message.trim()
     });
-
     if (!validation.success) {
       const firstError = validation.error.errors[0];
       toast({
@@ -37,7 +36,6 @@ const Contact = () => {
       });
       return;
     }
-
     setIsSubmitting(true);
     try {
       const {
