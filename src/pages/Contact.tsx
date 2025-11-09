@@ -78,11 +78,16 @@ const Contact = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-12">
+          <div className="grid md:grid-cols-3 gap-8 mb-12">
             <div className="bg-card p-8 rounded-lg border border-border hover:shadow-lg transition-smooth">
               <Mail className="w-12 h-12 text-primary mb-4" />
-              <h3 className="text-xl font-semibold mb-2 text-foreground">İletişim Bilgileri</h3>
-              <p className="text-muted-foreground mb-2">takazade.com@gmail.com</p>
+              <h3 className="text-xl font-semibold mb-2 text-foreground">E-posta</h3>
+              <p className="text-muted-foreground">takazade.com@gmail.com</p>
+            </div>
+
+            <div className="bg-card p-8 rounded-lg border border-border hover:shadow-lg transition-smooth">
+              <MessageSquare className="w-12 h-12 text-primary mb-4" />
+              <h3 className="text-xl font-semibold mb-2 text-foreground">Adres</h3>
               <p className="text-muted-foreground text-sm">
                 1330 Avenue of the Americas, 23rd Floor<br />
                 New York
