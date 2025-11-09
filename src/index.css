@@ -104,4 +104,16 @@ All colors MUST be HSL.
   .transition-smooth {
     transition: var(--transition-smooth);
   }
+
+  /* Mobile touch optimizations */
+  @media (max-width: 768px) {
+    [data-radix-portal] {
+      z-index: 9999 !important;
+    }
+    
+    .touch-manipulation {
+      -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+  }
 }

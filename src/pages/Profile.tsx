@@ -193,7 +193,7 @@ const Profile = () => {
       <div className="container mx-auto px-4 pt-24 pb-12">
         <div className="flex justify-between items-center mb-8">
           <h1 className="text-4xl font-bold text-foreground">Profilim</h1>
-          <Button onClick={handleLogout} variant="outline">
+          <Button onClick={handleLogout} variant="outline" className="touch-manipulation active:scale-95">
             <LogOut className="mr-2 h-4 w-4" />
             Çıkış Yap
           </Button>
@@ -228,7 +228,7 @@ const Profile = () => {
                   <Label htmlFor="bio">Hakkımda</Label>
                   <Textarea id="bio" value={bio} onChange={e => setBio(e.target.value)} className="mt-1" rows={4} />
                 </div>
-                <Button onClick={handleUpdateProfile} disabled={loading}>
+                <Button onClick={handleUpdateProfile} disabled={loading} className="touch-manipulation active:scale-95">
                   Kaydet
                 </Button>
               </CardContent>
@@ -240,7 +240,7 @@ const Profile = () => {
               <h2 className="text-2xl font-bold">Yeteneklerim</h2>
               <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
                 <DialogTrigger asChild>
-                  <Button>
+                  <Button className="touch-manipulation active:scale-95">
                     <Plus className="mr-2 h-4 w-4" />
                     Yetenek Ekle
                   </Button>
@@ -281,7 +281,7 @@ const Profile = () => {
                       <Input id="wantedTalent" value={wantedTalent} onChange={e => setWantedTalent(e.target.value)} className="mt-2" placeholder="Örn: İngilizce konuşma, Yemek tarifi, Yoga dersi" />
                     </div>
                     
-                    <Button onClick={handleAddTalent} disabled={loading} className="w-full text-base h-12">
+                    <Button onClick={handleAddTalent} disabled={loading} className="w-full text-base h-12 touch-manipulation active:scale-95">
                       Takas İlanını Yayınla
                     </Button>
                   </div>
@@ -299,7 +299,7 @@ const Profile = () => {
                     <CardDescription className="line-clamp-3">{talent.description}</CardDescription>
                   </CardHeader>
                   <CardContent>
-                    <Button variant="destructive" size="sm" className="w-full" onClick={() => handleDeleteTalent(talent.id)}>
+                    <Button variant="destructive" size="sm" className="w-full touch-manipulation active:scale-95" onClick={() => handleDeleteTalent(talent.id)}>
                       <Trash2 className="mr-2 h-4 w-4" />
                       Sil
                     </Button>

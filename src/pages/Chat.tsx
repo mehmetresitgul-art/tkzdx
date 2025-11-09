@@ -198,7 +198,7 @@ const Chat = () => {
                     <div
                       key={conv.id}
                       onClick={() => setSelectedConversation(conv.id)}
-                      className={`p-4 border-b cursor-pointer hover:bg-accent transition-colors ${
+                      className={`p-4 border-b cursor-pointer hover:bg-accent transition-colors touch-manipulation active:scale-[0.98] ${
                         selectedConversation === conv.id ? "bg-accent" : ""
                       }`}
                     >
@@ -276,7 +276,7 @@ const Chat = () => {
                         }
                       }}
                     />
-                    <Button onClick={handleSendMessage}>
+                    <Button onClick={handleSendMessage} className="touch-manipulation active:scale-95">
                       <Send className="h-4 w-4" />
                     </Button>
                   </div>

@@ -135,7 +135,10 @@ const Discover = () => {
             <h1 className="text-4xl font-bold text-foreground mb-2">Yetenek Takası Zamanı!</h1>
             <p className="text-lg text-muted-foreground">Bir şey öğren, bir şey öğret. İşte takas böyle çalışır!</p>
           </div>
-          <Button onClick={() => navigate("/profil")} className="hidden md:flex bg-primary hover:bg-primary/90 text-base h-11">
+          <Button 
+            onClick={() => navigate("/profil")} 
+            className="hidden md:flex bg-primary hover:bg-primary/90 text-base h-11 touch-manipulation active:scale-95"
+          >
             <Plus className="mr-2 h-5 w-5" />
             Kendi Takasını Başlat
           </Button>
@@ -143,15 +146,15 @@ const Discover = () => {
 
         <div className="flex flex-col md:flex-row gap-4 mb-8">
           <div className="relative flex-1">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4 pointer-events-none" />
             <Input placeholder="Yetenek ara..." value={search} onChange={e => setSearch(e.target.value)} className="pl-10" />
           </div>
           
           <Select value={category} onValueChange={setCategory}>
-            <SelectTrigger className="w-full md:w-[220px]">
+            <SelectTrigger className="w-full md:w-[220px] touch-manipulation">
               <SelectValue placeholder="Kategori Seç" />
             </SelectTrigger>
-            <SelectContent>
+            <SelectContent className="bg-background z-50" position="popper" sideOffset={5}>
               <SelectItem value="all">Tüm Kategoriler</SelectItem>
               <SelectItem value="yazilim">Yazılım</SelectItem>
               <SelectItem value="tasarim">Tasarım</SelectItem>
@@ -165,7 +168,7 @@ const Discover = () => {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {filteredTalents.map(talent => <Card key={talent.id} className="hover:shadow-lg transition-all hover:scale-[1.02] border-2 hover:border-primary/30">
+          {filteredTalents.map(talent => <Card key={talent.id} className="hover:shadow-lg transition-all md:hover:scale-[1.02] border-2 hover:border-primary/30 touch-manipulation">
               <CardContent className="p-6">
                 <div className="flex items-start justify-between mb-3">
                   <p className="text-xs font-semibold text-muted-foreground">
@@ -185,7 +188,11 @@ const Discover = () => {
                     <p className="text-sm font-medium text-foreground">{talent.wanted_talent}</p>
                   </div>}
                 
-                <Button className="w-full" onClick={() => handleStartConversation(talent.user_id)} disabled={talent.user_id === user?.id}>
+                <Button 
+                  className="w-full touch-manipulation active:scale-95" 
+                  onClick={() => handleStartConversation(talent.user_id)} 
+                  disabled={talent.user_id === user?.id}
+                >
                   <MessageCircle className="mr-2 h-4 w-4" />
                   {talent.user_id === user?.id ? "Kendi İlanın" : "Takas Teklifi Yap"}
                 </Button>
@@ -204,7 +211,11 @@ const Discover = () => {
       </div>
 
       {/* Floating Action Button for Mobile */}
-      <Button onClick={() => navigate("/profil")} className="md:hidden fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-2xl bg-primary hover:bg-primary/90 z-40 hover:scale-110 transition-transform" size="icon">
+      <Button 
+        onClick={() => navigate("/profil")} 
+        className="md:hidden fixed bottom-6 right-6 h-16 w-16 rounded-full shadow-2xl bg-primary hover:bg-primary/90 z-40 active:scale-95 touch-manipulation transition-transform" 
+        size="icon"
+      >
         <div className="flex flex-col items-center">
           <Plus className="h-6 w-6" />
           <span className="text-xs">Takas</span>

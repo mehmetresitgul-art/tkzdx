@@ -55,11 +55,11 @@ const Hero = () => {
           Yeteneklerini başkalarıyla takas et. Takazade ile yeni beceriler öğren, deneyimlerini paylaş.
         </p>
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto px-4">
-          <Button size="xl" onClick={handleGetStarted} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-secondary border-2 border-purple w-full sm:w-auto">
+          <Button size="xl" onClick={handleGetStarted} className="bg-secondary hover:bg-secondary/90 text-secondary-foreground shadow-secondary border-2 border-purple w-full sm:w-auto touch-manipulation active:scale-95">
             Hemen Başla
             <ArrowRight className="ml-2 h-5 w-5" />
           </Button>
-          <Button size="xl" variant="outline" className="border-2 border-[#6C63FF] w-full sm:w-auto" onClick={handleHowItWorks}>
+          <Button size="xl" variant="outline" className="border-2 border-[#6C63FF] w-full sm:w-auto touch-manipulation active:scale-95" onClick={handleHowItWorks}>
             Nasıl Çalışır?
           </Button>
         </div>

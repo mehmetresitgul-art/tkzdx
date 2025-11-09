@@ -167,7 +167,7 @@ const Auth = () => {
 
             <Button
               type="submit"
-              className="w-full bg-primary hover:bg-primary/90"
+              className="w-full bg-primary hover:bg-primary/90 touch-manipulation active:scale-95"
               disabled={loading}
             >
               {loading ? "Yükleniyor..." : isLogin ? "Giriş Yap" : "Üye Ol"}

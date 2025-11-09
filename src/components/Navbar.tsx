@@ -99,19 +99,19 @@ const Navbar = () => {
                     {user ? <Button size="lg" onClick={() => {
                     setIsOpen(false);
                     navigate("/profil");
-                  }} className="bg-primary hover:bg-primary/90 w-full min-h-[52px]">
+                  }} className="bg-primary hover:bg-primary/90 w-full min-h-[52px] touch-manipulation active:scale-95">
                         Hesabım
                       </Button> : <>
                         <Button size="lg" variant="ghost" onClick={() => {
                       setIsOpen(false);
                       navigate("/auth");
-                    }} className="w-full min-h-[52px]">
+                    }} className="w-full min-h-[52px] touch-manipulation active:scale-95">
                           Giriş Yap
                         </Button>
                         <Button size="lg" onClick={() => {
                       setIsOpen(false);
                       navigate("/auth");
-                    }} className="bg-primary hover:bg-primary/90 w-full min-h-[52px]">
+                    }} className="bg-primary hover:bg-primary/90 w-full min-h-[52px] touch-manipulation active:scale-95">
                           Üye Ol
                         </Button>
                       </>}
@@ -120,13 +120,13 @@ const Navbar = () => {
               </SheetContent>
             </Sheet>
             
-            {user ? <Button onClick={() => navigate("/profil")} className="bg-primary hover:bg-primary/90 hidden md:inline-flex">
+            {user ? <Button onClick={() => navigate("/profil")} className="bg-primary hover:bg-primary/90 hidden md:inline-flex touch-manipulation active:scale-95">
                 Hesabım
               </Button> : <>
-                <Button variant="ghost" onClick={() => navigate("/auth")} className="hidden md:inline-flex">
+                <Button variant="ghost" onClick={() => navigate("/auth")} className="hidden md:inline-flex touch-manipulation active:scale-95">
                   Giriş Yap
                 </Button>
-                <Button onClick={() => navigate("/auth")} className="bg-primary hover:bg-primary/90 hidden md:inline-flex">
+                <Button onClick={() => navigate("/auth")} className="bg-primary hover:bg-primary/90 hidden md:inline-flex touch-manipulation active:scale-95">
                   Üye Ol
                 </Button>
               </>}

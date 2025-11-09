@@ -121,7 +121,7 @@ const Contact = () => {
                 <Textarea id="message" value={message} onChange={e => setMessage(e.target.value)} placeholder="Mesajınızı buraya yazın..." className="w-full min-h-[150px]" required />
               </div>
 
-              <Button type="submit" disabled={isSubmitting} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground">
+              <Button type="submit" disabled={isSubmitting} className="w-full bg-primary hover:bg-primary/90 text-primary-foreground touch-manipulation active:scale-95">
                 {isSubmitting ? "Gönderiliyor..." : <>
                     <Send className="w-4 h-4 mr-2" />
                     Mesajı Gönder

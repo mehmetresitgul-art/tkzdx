@@ -88,6 +88,7 @@ const About = () => {
             <Button 
               onClick={() => window.location.href = "/auth"}
               size="lg"
+              className="touch-manipulation active:scale-95"
             >
               Hemen Başla
             </Button>
