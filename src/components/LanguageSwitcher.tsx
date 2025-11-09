@@ -14,7 +14,7 @@ const LanguageSwitcher = () => {
   return (
     <button
       onClick={changeLanguage}
-      className="relative h-10 w-20 rounded-full bg-accent/50 border border-border hover:bg-accent transition-smooth overflow-hidden touch-manipulation group"
+      className="relative h-9 w-16 rounded-full bg-background/40 backdrop-blur-sm border border-border/50 hover:border-primary/30 hover:bg-background/60 transition-all duration-300 overflow-hidden touch-manipulation group shadow-sm hover:shadow-md"
       aria-label="Change language"
     >
       <AnimatePresence mode="wait">
@@ -24,12 +24,12 @@ const LanguageSwitcher = () => {
           animate={{ rotateY: 0, opacity: 1 }}
           exit={{ rotateY: -90, opacity: 0 }}
           transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="absolute inset-0 flex items-center justify-center gap-1.5 text-sm font-medium"
+          className="absolute inset-0 flex items-center justify-center gap-1 text-xs font-light"
         >
-          <span className="text-lg group-hover:scale-110 transition-transform">
+          <span className="text-base opacity-80 group-hover:opacity-100 transition-all">
             {currentLang === 'tr' ? '🇹🇷' : '🇬🇧'}
           </span>
-          <span className="text-foreground">
+          <span className="text-foreground/80 group-hover:text-foreground tracking-wide">
             {currentLang === 'tr' ? 'TR' : 'EN'}
           </span>
         </motion.div>
