@@ -63,60 +63,90 @@ const Navbar = () => {
                   <Menu className="h-7 w-7" />
                 </Button>
               </SheetTrigger>
-              <SheetContent side="right" className="w-[300px]">
-                <nav className="flex flex-col gap-1 mt-8">
-                  {user ? <>
-                      <Link to="/" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
-                        Ana Sayfa
-                      </Link>
-                      <Link to="/kesfet" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
-                        Keşfet
-                      </Link>
-                      <Link to="/profil" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
-                        Profilim
-                      </Link>
-                      <Link to="/mesajlar" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
-                        Mesajlar
-                      </Link>
-                      <Link to="/iletisim" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
-                        İletişim
-                      </Link>
-                    </> : <>
-                      <a href="#nasil-calisir" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
-                        Nasıl Çalışır?
-                      </a>
-                      <a href="#topluluk" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
-                        Topluluk
-                      </a>
-                      <a href="#neden-takazade" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
-                        Neden Takazade?
-                      </a>
-                      <Link to="/iletisim" className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-4 px-3 text-lg rounded-md active:bg-accent touch-manipulation" onClick={() => setIsOpen(false)}>
-                        İletişim
-                      </Link>
-                    </>}
-                  <div className="flex flex-col gap-3 mt-6">
-                    {user ? <Button size="lg" onClick={() => {
-                    setIsOpen(false);
-                    navigate("/profil");
-                  }} className="bg-primary hover:bg-primary/90 w-full min-h-[52px] touch-manipulation active:scale-95">
-                        Hesabım
-                      </Button> : <>
-                        <Button size="lg" variant="ghost" onClick={() => {
-                      setIsOpen(false);
-                      navigate("/auth");
-                    }} className="w-full min-h-[52px] touch-manipulation active:scale-95">
-                          Giriş Yap
-                        </Button>
-                        <Button size="lg" onClick={() => {
-                      setIsOpen(false);
-                      navigate("/auth");
-                    }} className="bg-primary hover:bg-primary/90 w-full min-h-[52px] touch-manipulation active:scale-95">
-                          Üye Ol
-                        </Button>
-                      </>}
+              <SheetContent side="right" className="w-[300px] sm:w-[350px]">
+                <div className="flex flex-col h-full">
+                  <div className="flex-1">
+                    <nav className="flex flex-col gap-2 mt-8">
+                      {user ? <>
+                          <Link 
+                            to="/" 
+                            className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-3 px-4 text-base rounded-lg active:bg-accent touch-manipulation font-medium" 
+                            onClick={() => setIsOpen(false)}
+                          >
+                            Ana Sayfa
+                          </Link>
+                          <Link 
+                            to="/kesfet" 
+                            className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-3 px-4 text-base rounded-lg active:bg-accent touch-manipulation font-medium" 
+                            onClick={() => setIsOpen(false)}
+                          >
+                            Keşfet
+                          </Link>
+                          <Link 
+                            to="/profil" 
+                            className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-3 px-4 text-base rounded-lg active:bg-accent touch-manipulation font-medium" 
+                            onClick={() => setIsOpen(false)}
+                          >
+                            Profilim
+                          </Link>
+                          <Link 
+                            to="/mesajlar" 
+                            className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-3 px-4 text-base rounded-lg active:bg-accent touch-manipulation font-medium" 
+                            onClick={() => setIsOpen(false)}
+                          >
+                            Mesajlar
+                          </Link>
+                          <Link 
+                            to="/iletisim" 
+                            className="text-foreground hover:text-primary hover:bg-accent/50 transition-smooth py-3 px-4 text-base rounded-lg active:bg-accent touch-manipulation font-medium" 
+                            onClick={() => setIsOpen(false)}
+                          >
+                            İletişim
+                          </Link>
+                        </> : null}
+                    </nav>
                   </div>
-                </nav>
+                  <div className="border-t border-border pt-4 pb-2">
+                    <div className="flex flex-col gap-3">
+                      {user ? (
+                        <Button 
+                          size="lg" 
+                          onClick={() => {
+                            setIsOpen(false);
+                            navigate("/profil");
+                          }} 
+                          className="bg-primary hover:bg-primary/90 w-full min-h-[48px] touch-manipulation active:scale-95 font-semibold"
+                        >
+                          Hesabım
+                        </Button>
+                      ) : (
+                        <>
+                          <Button 
+                            size="lg" 
+                            variant="outline" 
+                            onClick={() => {
+                              setIsOpen(false);
+                              navigate("/auth");
+                            }} 
+                            className="w-full min-h-[48px] touch-manipulation active:scale-95 font-semibold border-2"
+                          >
+                            Giriş Yap
+                          </Button>
+                          <Button 
+                            size="lg" 
+                            onClick={() => {
+                              setIsOpen(false);
+                              navigate("/auth");
+                            }} 
+                            className="bg-primary hover:bg-primary/90 w-full min-h-[48px] touch-manipulation active:scale-95 font-semibold"
+                          >
+                            Üye Ol
+                          </Button>
+                        </>
+                      )}
+                    </div>
+                  </div>
+                </div>
               </SheetContent>
             </Sheet>
             
