@@ -247,40 +247,42 @@ const Profile = () => {
                 </DialogTrigger>
                 <DialogContent>
                   <DialogHeader>
-                    <DialogTitle>Yeni Yetenek Ekle</DialogTitle>
-                    <DialogDescription>
-                      Paylaşmak istediğiniz yeteneği ekleyin
+                    <DialogTitle className="text-2xl">🔄 Yetenek Takası Başlat!</DialogTitle>
+                    <DialogDescription className="text-base">
+                      Bir yeteneğini paylaş, başka bir yetenek öğren. İşte takas böyle başlar! 🎉
                     </DialogDescription>
                   </DialogHeader>
-                  <div className="space-y-4">
-                    <div>
-                      <Label htmlFor="talentTitle">Başlık</Label>
-                      <Input id="talentTitle" value={talentTitle} onChange={e => setTalentTitle(e.target.value)} className="mt-1" placeholder="Örn: Web Tasarımı" />
+                  <div className="space-y-5">
+                    <div className="bg-primary/5 p-4 rounded-lg border border-primary/20">
+                      <Label htmlFor="talentTitle" className="text-base font-semibold">✨ Sunduğun Yetenek</Label>
+                      <Input id="talentTitle" value={talentTitle} onChange={e => setTalentTitle(e.target.value)} className="mt-2" placeholder="Örn: Web Tasarımı, Fotoğrafçılık, Gitar Dersi" />
                     </div>
                     
                     <div>
-                      <Label htmlFor="talentCategory">Kategori</Label>
+                      <Label htmlFor="talentCategory" className="text-base font-semibold">📂 Kategori</Label>
                       <Select value={talentCategory} onValueChange={setTalentCategory}>
-                        <SelectTrigger className="mt-1">
-                          <SelectValue placeholder="Kategori seçin" />
+                        <SelectTrigger className="mt-2">
+                          <SelectValue placeholder="Yeteneğinin kategorisini seç" />
                         </SelectTrigger>
                         <SelectContent>
-                          <SelectItem value="yazilim">Yazılım</SelectItem>
-                          <SelectItem value="tasarim">Tasarım</SelectItem>
-                          <SelectItem value="muzik">Müzik</SelectItem>
-                          <SelectItem value="dil">Dil</SelectItem>
-                          <SelectItem value="spor">Spor</SelectItem>
-                          <SelectItem value="egitim">Eğitim</SelectItem>
-                          <SelectItem value="diger">Diğer</SelectItem>
+                          <SelectItem value="yazilim">💻 Yazılım</SelectItem>
+                          <SelectItem value="tasarim">🎨 Tasarım</SelectItem>
+                          <SelectItem value="muzik">🎵 Müzik</SelectItem>
+                          <SelectItem value="dil">🗣️ Dil</SelectItem>
+                          <SelectItem value="spor">⚽ Spor</SelectItem>
+                          <SelectItem value="egitim">📚 Eğitim</SelectItem>
+                          <SelectItem value="diger">🔮 Diğer</SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
-                    <div>
-                      <Label htmlFor="wantedTalent">Karşılığında Ne İstiyorsunuz?</Label>
-                      <Input id="wantedTalent" value={wantedTalent} onChange={e => setWantedTalent(e.target.value)} className="mt-1" placeholder="Örn: İngilizce konuşma pratiği" />
+                    
+                    <div className="bg-secondary/30 p-4 rounded-lg border border-secondary/40">
+                      <Label htmlFor="wantedTalent" className="text-base font-semibold">🎯 Karşılığında İstediğin Yetenek</Label>
+                      <Input id="wantedTalent" value={wantedTalent} onChange={e => setWantedTalent(e.target.value)} className="mt-2" placeholder="Örn: İngilizce konuşma, Yemek tarifi, Yoga dersi" />
                     </div>
-                    <Button onClick={handleAddTalent} disabled={loading} className="w-full">
-                      Ekle
+                    
+                    <Button onClick={handleAddTalent} disabled={loading} className="w-full text-base h-12">
+                      🚀 Takas İlanını Yayınla
                     </Button>
                   </div>
                 </DialogContent>
