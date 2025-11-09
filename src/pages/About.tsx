@@ -1,5 +1,6 @@
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { Button } from "@/components/ui/button";
 import { Users, Target, Heart, Leaf } from "lucide-react";
 
 const About = () => {
@@ -84,12 +85,12 @@ const About = () => {
               Takazade topluluğuna katılarak sen de yeteneklerini paylaş, 
               yeni beceriler öğren ve sürdürülebilir bir geleceğe katkıda bulun.
             </p>
-            <a 
-              href="/auth" 
-              className="inline-block bg-primary text-primary-foreground px-8 py-3 rounded-lg font-semibold hover:bg-primary/90 transition-smooth"
+            <Button 
+              onClick={() => window.location.href = "/auth"}
+              size="lg"
             >
               Hemen Başla
-            </a>
+            </Button>
           </section>
         </div>
       </main>
