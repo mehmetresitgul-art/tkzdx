@@ -82,7 +82,9 @@ const Contact = () => {
             <div className="bg-card p-8 rounded-lg border border-border hover:shadow-lg transition-smooth">
               <Mail className="w-12 h-12 text-primary mb-4" />
               <h3 className="text-xl font-semibold mb-2 text-foreground">E-posta</h3>
-              <p className="text-muted-foreground">takazade.com@gmail.com</p>
+              <a href="mailto:takazade.com@gmail.com" className="text-muted-foreground hover:text-primary transition-smooth">
+                takazade.com@gmail.com
+              </a>
             </div>
 
             <div className="bg-card p-8 rounded-lg border border-border hover:shadow-lg transition-smooth">
