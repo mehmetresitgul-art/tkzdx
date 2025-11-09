@@ -1,5 +1,5 @@
 import logo from "@/assets/takazade-logo.png";
-import { Facebook, Twitter, Instagram, Linkedin } from "lucide-react";
+import { Twitter, Instagram, Linkedin } from "lucide-react";
 import { useTranslation } from "react-i18next";
 
 const Footer = () => {
@@ -35,16 +35,13 @@ const Footer = () => {
           <div>
             <h4 className="font-semibold mb-4 text-foreground">{t('footer.socialMedia')}</h4>
             <div className="flex gap-4">
-              <a href="#" className="text-muted-foreground hover:text-primary transition-smooth">
-                <Facebook className="w-5 h-5" />
-              </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-smooth">
+              <a href="https://x.com/takazade" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-smooth">
                 <Twitter className="w-5 h-5" />
               </a>
               <a href="https://www.instagram.com/takazadecom" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-smooth">
                 <Instagram className="w-5 h-5" />
               </a>
-              <a href="#" className="text-muted-foreground hover:text-primary transition-smooth">
+              <a href="https://www.linkedin.com/company/takazade" target="_blank" rel="noopener noreferrer" className="text-muted-foreground hover:text-primary transition-smooth">
                 <Linkedin className="w-5 h-5" />
               </a>
             </div>
