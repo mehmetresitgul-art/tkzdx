@@ -49,7 +49,7 @@ Sürdürülebilir bir gelecek için birlikte.</p>
         </div>
         
         <div className="border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; 2025 Takazade. Tüm hakları saklıdır.</p>
+          <p>© 2025 Takazade | 23rd Floor, New York, USATüm hakları saklıdır.</p>
         </div>
       </div>
     </footer>;
