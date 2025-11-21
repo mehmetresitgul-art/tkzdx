@@ -17,6 +17,7 @@ import About from "./pages/About";
 import Terms from "./pages/Terms";
 import Privacy from "./pages/Privacy";
 import Cookies from "./pages/Cookies";
+import HowItWorksPage from "./pages/HowItWorksPage";
 
 const queryClient = new QueryClient();
 
@@ -153,6 +154,19 @@ const AnimatedRoutes = () => {
               transition={{ duration: 0.3 }}
             >
               <Cookies />
+            </motion.div>
+          }
+        />
+        <Route
+          path="/nasil-calisir"
+          element={
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: 20 }}
+              transition={{ duration: 0.3 }}
+            >
+              <HowItWorksPage />
             </motion.div>
           }
         />
