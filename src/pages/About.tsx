@@ -3,12 +3,11 @@ import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Users, Target, Heart, Leaf, User } from "lucide-react";
 import { useTranslation } from "react-i18next";
-
 const About = () => {
-  const { t } = useTranslation();
-  
-  return (
-    <div className="min-h-screen">
+  const {
+    t
+  } = useTranslation();
+  return <div className="min-h-screen">
       <Navbar />
       
       <main className="container mx-auto px-4 py-20">
@@ -71,15 +70,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="bg-card rounded-lg p-6 border border-border md:col-span-2 flex flex-col items-center text-center">
-              <div className="w-12 h-12 bg-secondary/10 rounded-full flex items-center justify-center mb-4">
-                <User className="w-6 h-6 text-secondary" />
-              </div>
-              <h3 className="text-xl font-semibold mb-3 text-foreground">{t('about.founderTitle')}</h3>
-              <p className="text-muted-foreground">
-                {t('about.founderDesc')}
-              </p>
-            </div>
+            
           </section>
 
           <section className="bg-muted/30 rounded-lg p-8 text-center">
@@ -89,11 +80,7 @@ const About = () => {
             <p className="text-lg text-muted-foreground mb-6">
               {t('about.joinDesc')}
             </p>
-            <Button 
-              onClick={() => window.location.href = "/auth"}
-              size="lg"
-              className="touch-manipulation active:scale-95"
-            >
+            <Button onClick={() => window.location.href = "/auth"} size="lg" className="touch-manipulation active:scale-95">
               {t('about.joinButton')}
             </Button>
           </section>
@@ -101,8 +88,6 @@ const About = () => {
       </main>
 
       <Footer />
-    </div>
-  );
+    </div>;
 };
-
 export default About;
