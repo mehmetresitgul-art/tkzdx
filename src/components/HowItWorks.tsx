@@ -118,8 +118,8 @@ const HowItWorks = () => {
           </Card>
         </motion.div>
 
-        {/* All Steps Grid - Scroll-triggered */}
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-5xl mx-auto">
+        {/* All Steps Grid - Scroll-triggered Vertical */}
+        <div className="flex flex-col gap-12 max-w-3xl mx-auto">
           {steps.map((step, index) => {
             const StepIcon = step.icon;
             const isActive = activeStep >= index;
@@ -138,10 +138,10 @@ const HowItWorks = () => {
               <motion.div
                 key={index}
                 style={{ scale, opacity }}
-                initial={{ opacity: 0, y: 100 }}
+                initial={{ opacity: 0, x: -100 }}
                 animate={{
                   opacity: isActive ? 1 : 0.3,
-                  y: isActive ? 0 : 50,
+                  x: isActive ? 0 : -50,
                   scale: isActive ? 1 : 0.9
                 }}
                 transition={{
@@ -153,42 +153,54 @@ const HowItWorks = () => {
                 <Card 
                   className={`group border-2 shadow-card transition-all duration-500 cursor-pointer ${
                     isActive 
-                      ? 'border-primary shadow-primary hover:-translate-y-2 hover:scale-105' 
+                      ? 'border-primary shadow-primary shadow-lg' 
                       : 'border-muted opacity-50'
                   }`}
                   onClick={() => setActiveStep(index)}
                 >
-                  <CardContent className="pt-8 pb-8 text-center">
-                    <motion.div 
-                      className={`w-16 h-16 mx-auto mb-6 rounded-full flex items-center justify-center ${
-                        isActive ? 'bg-primary/20' : 'bg-muted/50'
-                      }`}
-                      animate={{
-                        scale: isActive ? [1, 1.2, 1] : 1,
-                        rotate: isActive ? [0, 10, -10, 0] : 0
-                      }}
-                      transition={{
-                        duration: 2,
-                        repeat: isActive ? Infinity : 0,
-                        repeatType: "reverse"
-                      }}
-                      whileHover={{ scale: 1.2, rotate: 360 }}
-                    >
-                      <StepIcon className={`w-8 h-8 transition-colors ${
-                        isActive ? 'text-primary' : 'text-muted-foreground'
-                      }`} />
-                    </motion.div>
-                    <h3 className="text-xl md:text-2xl font-semibold mb-3 text-foreground">{step.title}</h3>
-                    <p className="text-base text-muted-foreground">{step.description}</p>
-                    
-                    {isActive && (
-                      <motion.div
-                        initial={{ width: 0 }}
-                        animate={{ width: "100%" }}
-                        transition={{ duration: 1, delay: 0.3 }}
-                        className="h-1 bg-primary rounded-full mt-6"
-                      />
-                    )}
+                  <CardContent className="pt-10 pb-10 px-8">
+                    <div className="flex items-center gap-8">
+                      <motion.div 
+                        className={`w-20 h-20 shrink-0 rounded-full flex items-center justify-center ${
+                          isActive ? 'bg-primary/20' : 'bg-muted/50'
+                        }`}
+                        animate={{
+                          scale: isActive ? [1, 1.2, 1] : 1,
+                          rotate: isActive ? [0, 10, -10, 0] : 0
+                        }}
+                        transition={{
+                          duration: 2,
+                          repeat: isActive ? Infinity : 0,
+                          repeatType: "reverse"
+                        }}
+                        whileHover={{ scale: 1.2, rotate: 360 }}
+                      >
+                        <StepIcon className={`w-10 h-10 transition-colors ${
+                          isActive ? 'text-primary' : 'text-muted-foreground'
+                        }`} />
+                      </motion.div>
+                      
+                      <div className="flex-1">
+                        <div className="flex items-center gap-4 mb-3">
+                          <span className={`text-5xl font-bold transition-colors ${
+                            isActive ? 'text-primary' : 'text-muted-foreground/30'
+                          }`}>
+                            {index + 1}
+                          </span>
+                          <h3 className="text-2xl md:text-3xl font-semibold text-foreground">{step.title}</h3>
+                        </div>
+                        <p className="text-lg text-muted-foreground">{step.description}</p>
+                        
+                        {isActive && (
+                          <motion.div
+                            initial={{ width: 0 }}
+                            animate={{ width: "100%" }}
+                            transition={{ duration: 1, delay: 0.3 }}
+                            className="h-1 bg-primary rounded-full mt-6"
+                          />
+                        )}
+                      </div>
+                    </div>
                   </CardContent>
                 </Card>
               </motion.div>
